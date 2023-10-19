@@ -165,10 +165,7 @@ function SignUp1(props) {
                 </label>
               </div>
             ) : (
-              <div
-                className="flex mt-3 mb-2 rounded-md "
-                // border border-solid border-[#232627]"
-              >
+              <div className="flex mt-3 mb-2 rounded-md ">
                 <div className="h-[120px]">
                   <img
                     src={setShowImage()}

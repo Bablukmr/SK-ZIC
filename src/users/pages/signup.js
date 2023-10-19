@@ -4,7 +4,12 @@ import SignUp2 from "../components/SignUp2";
 import SignUp3 from "../components/SignUp3";
 import SignUp4 from "../components/SignUp4";
 
+import { Skeleton } from "antd";
+import { Link } from "react-router-dom";
+
 const stepComponents = [SignUp1, SignUp2, SignUp3];
+
+// const stepComponents = [];
 
 const defaultValue = {
   step: 1,
@@ -18,10 +23,13 @@ const defaultValue = {
   password: "",
   userEmail: "",
   phoneNumber: "",
+  loading: false,
 };
 
 function SignUp() {
   const [formState, setFormState] = useState(defaultValue);
+
+  console.log(formState);
 
   const handleFieldUpdate = (value, fieldName) => {
     setFormState({
@@ -58,11 +66,24 @@ function SignUp() {
       );
     } else {
       return (
-        <div className="flex items-center font-Poppins mt-8 flex-col justify-center">
-          <h1>Sign Up Successfully</h1>
-          <button className="w-20 py-2 px-5 m-2 rounded-md bg-fuchsia-900">
-            LogIn
-          </button>
+        <div className="flex items-center w-full h-[calc(100vh-60px)] justify-center">
+          {formState?.loading ? (
+            <div className="w-1/2">
+              <Skeleton active avatar paragraph={{ rows: 4 }} />
+            </div>
+          ) : (
+            <div className="mt-[-30px] flex flex-col items-center">
+              <h1>Sign Up Successfully</h1>
+              <Link to="/signin">
+                <button
+                  className="w-24 py-3 outline-none border-none cursor-pointer px-5
+               text-white rounded-md bg-fuchsia-900"
+                >
+                  LogIn
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       );
     }
