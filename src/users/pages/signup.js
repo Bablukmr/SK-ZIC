@@ -10,7 +10,7 @@ const defaultValue = {
   step: 1,
   firstName: "",
   lastName: "",
-  ID: "",
+  ID: null,
   rtoName: "",
   address: "",
   email: "",
@@ -22,7 +22,7 @@ const defaultValue = {
 
 function SignUp() {
   const [formState, setFormState] = useState(defaultValue);
-
+// console.log(formState);
   const handleFieldUpdate = (value, fieldName) => {
     setFormState({
       ...formState,

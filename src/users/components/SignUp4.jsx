@@ -10,7 +10,7 @@ function SignUp3(props) {
   return (
     <div className="relative bg-[reed]  min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
       <div
-        className="z-10 cursor-pointer absolute top-[30px] left-10"
+        className="z-10 cursor-pointer absolute top-[40px] sm:top-[30px]  left-10"
         onClick={previousStep}
       >
         <svg
@@ -150,7 +150,7 @@ function SignUp3(props) {
         </div>
         <button
           type="submit"
-          className="w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
+          className="cursor-pointer w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
           Signup
         </button>

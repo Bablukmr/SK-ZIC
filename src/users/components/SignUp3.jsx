@@ -57,29 +57,32 @@ function SignUp3(props) {
   };
 
   return (
-    <div className="relative  min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
+    <div className="sm:relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
+    <div className="w-full flex">
       <div
-        className="z-10 cursor-pointer absolute top-[30px] left-10"
-        onClick={previousStep}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1}
-          stroke="currentColor"
-          className="w-10 h-10"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </div>
-      <div className=" absolute top-[30px] w-full">
-        <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
-      </div>
+       className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
+       onClick={previousStep}
+     >
+       <svg
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         strokeWidth={1}
+         stroke="currentColor"
+         className="w-10 h-10"
+       >
+         <path
+           strokeLinecap="round"
+           strokeLinejoin="round"
+           d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+         />
+       </svg>
+     </div>
+     <div className="sm:absolute mr-[22%] w-full flex items-center justify-center">
+       <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
+     </div>
+    </div>
+
 
       <form
         onSubmit={handleSubmit}
@@ -199,7 +202,7 @@ function SignUp3(props) {
         </div>
         <button
           type="submit"
-          className="w-[15rem] sm:w-[22rem] h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
+          className="cursor-pointer w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
           Next
         </button>

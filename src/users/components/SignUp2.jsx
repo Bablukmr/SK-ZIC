@@ -46,9 +46,10 @@ function SignUp2(props) {
   };
 
   return (
-    <div className="relative  min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
-      <div
-        className="z-10 cursor-pointer absolute top-[30px] left-10"
+    <div className="sm:relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
+     <div className="w-full flex">
+       <div
+        className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
         onClick={previousStep}
       >
         <svg
@@ -66,9 +67,10 @@ function SignUp2(props) {
           />
         </svg>
       </div>
-      <div className=" absolute top-[30px] w-full">
+      <div className="sm:absolute mr-[22%] w-full flex items-center justify-center">
         <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
       </div>
+     </div>
 
       <form
         onSubmit={handleSubmit}
@@ -159,11 +161,7 @@ function SignUp2(props) {
 
         <button
           type="submit"
-<<<<<<< HEAD
-          className="w-full h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
-=======
-          className="cursor-pointer w-1/2 h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
->>>>>>> 7b055fe8f05b712196883e7ef251168a8f7a108f
+          className="cursor-pointer w-full h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
            text-white"
         >
           Next
@@ -182,8 +180,7 @@ function SignUp2(props) {
 
 export default SignUp2;
 
-{
-  /* <svg
+/* <svg
           onClick={previousStep}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -198,4 +195,3 @@ export default SignUp2;
             d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
           />
         </svg> */
-}

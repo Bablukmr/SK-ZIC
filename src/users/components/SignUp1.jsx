@@ -57,8 +57,8 @@ function SignUp1(props) {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
-      <div className=" absolute top-[30px] w-full">
+    <div className=" z-10 min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
+      <div className=" w-full">
         <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
       </div>
 
