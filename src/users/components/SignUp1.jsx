@@ -63,11 +63,11 @@ function SignUp1(props) {
       </div>
 
       <form
-        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[40%] bg-[bluee]"
+        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[75%] sm:w-[30%] bg-[bluee]"
         onSubmit={handleSubmit}
       >
-        <div className="w-full bg-[reed]  sm:flex sm:justify-center gap-3 my-3">
-          <div className=" w-1/2 bg-[greeen]">
+        <div className="w-full sm:flex sm:justify-center gap-3 my-3">
+          <div className="w-full sm:w-1/2 bg-[gren]">
             <label>
               <small>First name </small>
             </label>
@@ -97,7 +97,7 @@ function SignUp1(props) {
               />
             </div>
           </div>
-          <div className="w-1/2 bg-[yeellow]">
+          <div className="w-full sm:w-1/2 bg-[yeellow]">
             <label>
               <small>Last name </small>
             </label>
@@ -201,7 +201,7 @@ function SignUp1(props) {
 
         <button
           type="submit"
-          className="cursor-pointer w-[15rem] sm:w-[22rem] h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
+          className="cursor-pointer w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
           Next
         </button>

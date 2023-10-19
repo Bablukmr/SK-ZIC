@@ -34,9 +34,9 @@ function SignUp2(props) {
 
       <form
         onSubmit={handleSubmit}
-        className=" flex mt-[70px] gap-y-4 flex-col items-center w-[50%]"
+        className=" flex mt-[70px] gap-y-4 flex-col items-center w-[75%] sm:w-[30%]"
       >
-        <div className="bg-[greeen] w-1/2">
+        <div className="bg-[greeen] w-full ">
           <label>
             <small>RTO Name </small>
           </label>
@@ -65,7 +65,7 @@ function SignUp2(props) {
             />
           </div>
         </div>
-        <div className=" w-1/2">
+        <div className="w-full">
           <label>
             <small>Address</small>
           </label>
@@ -91,7 +91,7 @@ function SignUp2(props) {
             />
           </div>
         </div>
-        <div className="bg-[greeen] w-1/2">
+        <div className="bg-[greeen] w-full">
           <label>
             <small>Email </small>
           </label>
@@ -121,7 +121,7 @@ function SignUp2(props) {
 
         <button
           type="submit"
-          className="w-1/2 h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
+          className="w-full h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
            text-white"
         >
           Next
