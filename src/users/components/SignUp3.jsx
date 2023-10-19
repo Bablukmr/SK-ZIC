@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import { Link } from "react-router-dom";
 
 function SignUp3(props) {
@@ -5,6 +6,53 @@ function SignUp3(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const userName = formState?.userName;
+    const password = formState?.password;
+    const userEmail = formState?.userEmail;
+    const phoneNumber = formState?.phoneNumber;
+
+    if (!userName) {
+      notification["error"]({
+        message: "Error !!",
+        description: "UserName missing.",
+      });
+      return;
+    }
+
+    if (!password) {
+      notification["error"]({
+        message: "Error !!",
+        description: "Password missing.",
+      });
+      return;
+    }
+
+    if (!userEmail) {
+      notification["error"]({
+        message: "Error !!",
+        description: "Email missing.",
+      });
+      return;
+    } else {
+      let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!regexEmail.test(userEmail)) {
+        notification["error"]({
+          message: "Error !!",
+          description: "Wrong email format.",
+        });
+        return;
+      }
+    }
+
+    if (!phoneNumber) {
+      notification["error"]({
+        message: "Error !!",
+        description: "Phone Number missing.",
+      });
+      return;
+    }
+
     nextStep();
   };
 
@@ -58,8 +106,8 @@ function SignUp3(props) {
             </svg>
 
             <input
-              value={formState.UserName}
-              onChange={(e) => handleChange(e.target.value, "UserName")}
+              value={formState.userName}
+              onChange={(e) => handleChange(e.target.value, "userName")}
               placeholder="User Name"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />
@@ -85,8 +133,8 @@ function SignUp3(props) {
               />
             </svg>
             <input
-              value={formState.SetPassword}
-              onChange={(e) => handleChange(e.target.value, "SetPassword")}
+              value={formState.password}
+              onChange={(e) => handleChange(e.target.value, "password")}
               type="password"
               placeholder="Password"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
@@ -113,9 +161,9 @@ function SignUp3(props) {
               />
             </svg>
             <input
-              value={formState.UserEmail}
-              onChange={(e) => handleChange(e.target.value, "UserEmail")}
-              type="email"
+              value={formState.userEmail}
+              onChange={(e) => handleChange(e.target.value, "userEmail")}
+              type="text"
               placeholder="XXXX-XXXXXXXX"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />
@@ -141,8 +189,8 @@ function SignUp3(props) {
               />
             </svg>
             <input
-              value={formState.PhoneNumber}
-              onChange={(e) => handleChange(e.target.value, "PhoneNumber")}
+              value={formState.phoneNumber}
+              onChange={(e) => handleChange(e.target.value, "phoneNumber")}
               type="tel"
               placeholder="Phone Number"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
@@ -151,11 +199,10 @@ function SignUp3(props) {
         </div>
         <button
           type="submit"
-          className="w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
+          className="w-[15rem] sm:w-[22rem] h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
           Next
         </button>
-
 
         <div className="flex bg-[rsed] mt-6 items-center pb-8">
           <small className="p-0 m-0">Already have an account? </small>
