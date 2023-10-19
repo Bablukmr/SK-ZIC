@@ -4,7 +4,7 @@ import SignUp2 from "../components/SignUp2";
 import SignUp3 from "../components/SignUp3";
 import SignUp4 from "../components/SignUp4";
 
-const stepComponents = [SignUp1, SignUp2, SignUp3, SignUp4];
+const stepComponents = [SignUp1, SignUp2, SignUp3];
 
 const defaultValue = {
   step: 1,
@@ -14,10 +14,10 @@ const defaultValue = {
   rtoName: "",
   address: "",
   email: "",
-  UserName: "",
-  SetPassword: "",
-  UserEmail: "",
-  PhoneNumber: "",
+  userName: "",
+  password: "",
+  userEmail: "",
+  phoneNumber: "",
 };
 
 function SignUp() {
