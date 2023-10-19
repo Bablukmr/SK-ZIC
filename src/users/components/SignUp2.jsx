@@ -1,10 +1,48 @@
 import { Link } from "react-router-dom";
+import { notification } from "antd";
 
 function SignUp2(props) {
   const { previousStep, nextStep, formState, handleChange } = props;
   const handleSubmit = (e) => {
     e.preventDefault();
-    nextStep();
+
+    const rtoName = formState?.rtoName;
+    const address = formState?.address;
+    const email = formState?.email;
+
+    if (!rtoName) {
+      notification["error"]({
+        message: "Error !!",
+        description: "RTO name missing.",
+      });
+    }
+
+    if (rtoName && !address) {
+      notification["error"]({
+        message: "Error !!",
+        description: "Address missing.",
+      });
+    }
+
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (rtoName && address) {
+      if (!email) {
+        notification["error"]({
+          message: "Error !!",
+          description: "Email missing.",
+        });
+      } else {
+        if (regexEmail.test(email)) {
+          nextStep();
+        } else {
+          notification["error"]({
+            message: "Error !!",
+            description: "Wrong email format.",
+          });
+        }
+      }
+    }
   };
 
   return (
@@ -58,8 +96,8 @@ function SignUp2(props) {
             </svg>
 
             <input
-              value={formState.RTOName}
-              onChange={(e) => handleChange(e.target.value, "RTOName")}
+              value={formState.rtoName}
+              onChange={(e) => handleChange(e.target.value, "rtoName")}
               placeholder="Transport Office"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />
@@ -84,8 +122,8 @@ function SignUp2(props) {
               />
             </svg>
             <input
-              value={formState.Address}
-              onChange={(e) => handleChange(e.target.value, "Address")}
+              value={formState.address}
+              onChange={(e) => handleChange(e.target.value, "address")}
               placeholder="XYZ Transport Office"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />
@@ -111,9 +149,9 @@ function SignUp2(props) {
               />
             </svg>
             <input
-              value={formState.Email}
-              onChange={(e) => handleChange(e.target.value, "Email")}
-              placeholder="XXXX-XXXXXXXX"
+              value={formState.email}
+              onChange={(e) => handleChange(e.target.value, "email")}
+              placeholder="email"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />
           </div>
@@ -121,7 +159,7 @@ function SignUp2(props) {
 
         <button
           type="submit"
-          className="w-1/2 h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
+          className="cursor-pointer w-1/2 h-[2.3rem] mt-5 rounded-md bg-[#333333] hover:bg-[#333333de]
            text-white"
         >
           Next
@@ -133,7 +171,6 @@ function SignUp2(props) {
             <small className="p-0 m-0">Login Now</small>
           </Link>
         </div>
-
       </form>
     </div>
   );
