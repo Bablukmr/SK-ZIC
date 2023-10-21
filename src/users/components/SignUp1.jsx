@@ -63,7 +63,7 @@ function SignUp1(props) {
       </div>
 
       <form
-        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[75%] sm:w-[30%] bg-[bluee]"
+        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[75%] sm:w-[25%] bg-[bluee]"
         onSubmit={handleSubmit}
       >
         <div className="w-full sm:flex sm:justify-center gap-3 my-3">

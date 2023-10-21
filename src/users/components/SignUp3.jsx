@@ -86,7 +86,7 @@ function SignUp3(props) {
 
       <form
         onSubmit={handleSubmit}
-        className=" flex  mt-[110px] flex-col items-center gap-y-4 w-[75%] sm:w-[30%]"
+        className=" flex  mt-[110px] flex-col items-center gap-y-4 w-[75%] sm:w-[25%]"
       >
         <div className=" w-full">
           <label>

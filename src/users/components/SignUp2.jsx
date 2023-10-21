@@ -74,7 +74,7 @@ function SignUp2(props) {
 
       <form
         onSubmit={handleSubmit}
-        className=" flex mt-[70px] gap-y-4 flex-col items-center w-[75%] sm:w-[30%]"
+        className=" flex mt-[70px] gap-y-4 flex-col items-center w-[75%] sm:w-[25%]"
       >
         <div className="bg-[greeen] w-full ">
           <label>
