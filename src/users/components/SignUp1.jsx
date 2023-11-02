@@ -55,13 +55,13 @@ function SignUp1(props) {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
-      <div className=" absolute top-[30px] w-full">
+    <div className=" z-10 min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
+      <div className=" w-full">
         <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
       </div>
 
       <form
-        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[75%] sm:w-[30%] bg-[bluee]"
+        className=" flex mt-[40px] flex-col gap-y-4 items-center w-[75%] sm:w-[25%] bg-[bluee]"
         onSubmit={handleSubmit}
       >
         <div className="w-full sm:flex sm:justify-center gap-3 my-3">

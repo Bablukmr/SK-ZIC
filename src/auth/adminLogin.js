@@ -53,7 +53,7 @@ export default function AdminSignIn() {
                     </div>
 
                     <div className="w-full bg-[yelloww] flex flex-1 items-center  justify-center">
-                        <form className="bg-[redd] w-1/4 flex flex-col gap-y-6 mt-[-60px]">
+                        <form className="bg-[redd] w-[75%] sm:w-1/4 flex flex-col gap-y-6 mt-[-60px]">
                             <div className="flex flex-col gap-y-2">
                                 <label><small>Email </small></label>
 
