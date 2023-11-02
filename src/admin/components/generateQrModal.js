@@ -18,7 +18,7 @@ export default function GenerateQrModal(props) {
     returnedData,
     isMobile,
     setSaved,
-    name
+    name,
   } = props;
 
   const canvasRef = useRef(null);
@@ -37,8 +37,7 @@ export default function GenerateQrModal(props) {
   function downloadQr() {
     // zip.remove("images-qr");
     setShowModal(false);
-    window.open(`http://localhost:8000/qr/download-qr?name=${name}`, '_blank')
-
+    window.open(`http://localhost:8000/qr/download-qr?name=${name}`, "_blank");
 
     // const abc = [];
     // returnedData.forEach((d, i) => {
@@ -158,6 +157,7 @@ export default function GenerateQrModal(props) {
         destroyOnClose
         onCancel={hideModal}
         footer={null}
+        maskClosable={false}
       >
         <div className="flex flex-col justify-center items-center">
           <h2 className="p-0">{quantity}</h2>

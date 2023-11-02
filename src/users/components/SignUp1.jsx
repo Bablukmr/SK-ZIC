@@ -36,7 +36,6 @@ function SignUp1(props) {
   };
 
   const [inputVal, setInputVal] = useState(formState.ID);
-  // const [image, setImage] = useState(formState.ID);
 
   const handleDelete = () => {
     setInputVal(null);
@@ -50,7 +49,6 @@ function SignUp1(props) {
     // console.log(URL.createObjectURL(e.target.files[0]));
   };
 
-  // console.log(formState.ID);
   //datauri**
   const setShowImage = () => {
     return inputVal ? URL.createObjectURL(inputVal) : "";

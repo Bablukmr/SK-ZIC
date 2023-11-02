@@ -18,8 +18,8 @@ export default function UserSignIn() {
 
   console.log("URL", urlToGo);
 
-  const [email, setEmail] = useState(null);
-  const [pass, setPass] = useState(null);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
 
   useEffect(() => {
     if (urlToGo) {
@@ -31,14 +31,31 @@ export default function UserSignIn() {
 
   const ss = (e) => {
     e.preventDefault();
-    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (regexEmail.test(email)) {
-      dispatch(userLogIn(email, pass));
-    } else {
+
+    if (!pass) {
       notification["error"]({
         message: "Error !!",
-        description: "Not a valid email !!",
+        description: "Password missing.",
       });
+      return;
+    }
+
+    if (!email) {
+      notification["error"]({
+        message: "Error !!",
+        description: "Email missing.",
+      });
+      return;
+    } else {
+      let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (regexEmail.test(email)) {
+        dispatch(userLogIn(email, pass));
+      } else {
+        notification["error"]({
+          message: "Error !!",
+          description: "Not a valid email !!",
+        });
+      }
     }
   };
 
@@ -49,9 +66,8 @@ export default function UserSignIn() {
       ) : (
         <>
           {!isMobile && (
-            <div className="bg-[red]  w-1/2 flex items-center justify-center">
-              {/* <Image src="/2df2.jpg" width={300} height={300} /> */}
-              sdf
+            <div className="w-1/2 flex items-center justify-center">
+              {/* <img src="/2df2.jpg" width={300} height={300} /> */}
             </div>
           )}
           <div className="bg-[yelloww] w-full lg:w-1/2 flex flex-col justify-center items-center h-full">
@@ -83,6 +99,7 @@ export default function UserSignIn() {
 
                     <input
                       type="email"
+                      value={email}
                       className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
                       placeholder="Email"
                       onChange={(e) => {
@@ -122,11 +139,17 @@ export default function UserSignIn() {
                       onChange={(e) => {
                         setPass(e.target.value);
                       }}
+                      value={pass}
                     />
                   </div>
                 </div>
                 <small className="cursor-pointer font-semibold w-[120px]">
-                  Forgot Password ?
+                  <Link
+                    to="/forget-password"
+                    className="text-black no-underline"
+                  >
+                    Forgot Password ?
+                  </Link>
                 </small>
                 <button
                   className="h-[35px] bg-[#23262d] text-white rounded-md cursor-pointer
