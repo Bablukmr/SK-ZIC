@@ -60,15 +60,45 @@ export const userData = (userData) => {
   };
 };
 
-export const userLogout = () => {
-  localStorage.removeItem("token");
+export const userLogout = (token) => {
   return (dispatch) => {
-    dispatch({
-      type: types.USER_DETAIL,
-      payload: {
-        token: null,
-      },
-    });
+    axios
+      .post("http://localhost:8000/users/logout/", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((d) => {
+        console.log(d);
+        localStorage.removeItem("token");
+        dispatch({
+          type: types.USER_DETAIL,
+          payload: {
+            token: null,
+          },
+        });
+      })
+      .catch((e) => {
+        localStorage.removeItem("token");
+        dispatch({
+          type: types.USER_DETAIL,
+          payload: {
+            token: null,
+          },
+        });
+      });
+
+    // localStorage.removeItem("token");
+    // logout
+
+    // return (dispatch) => {
+    //   dispatch({
+    //     type: types.USER_DETAIL,
+    //     payload: {
+    //       token: null,
+    //     },
+    //   });
+    // };
   };
 };
 
@@ -110,10 +140,39 @@ export const userLogIn = (email, password) => {
         });
       })
       .catch((e) => {
-        notification["error"]({
-          message: "Error !!",
-          description: "Wrong Credentials.",
-        });
+        try {
+          let d = e?.response?.data;
+          if (d) {
+            if (d.non_field_errors && d.non_field_errors[0]) {
+              if (d.non_field_errors[0] === "E-mail is not verified.") {
+                notification["error"]({
+                  message: "Error !!",
+                  description: "Email is not verified..",
+                });
+              } else if (
+                d.non_field_errors[0] ===
+                "Unable to log in with provided credentials."
+              ) {
+                notification["error"]({
+                  message: "Error !!",
+                  description: "Wrong Credentials.",
+                });
+              }
+            }
+          } else {
+            notification["error"]({
+              message: "Error !!",
+              description: "Something went wrong, try again.",
+            });
+          }
+        } catch {
+          notification["error"]({
+            message: "Error !!",
+            description: "Something went wrong, try again.",
+            // description: "Wrong Credentialssss.",
+          });
+        }
+        // console.log(e.response.data.non_field_errors[0]);
         dispatch({
           type: types.USER_DETAIL,
           payload: {
@@ -128,17 +187,18 @@ export const userLogIn = (email, password) => {
 export const getUserData = (token) => {
   return (dispatch) => {
     axios
-      .get("http://localhost:8000/dj-rest-auth/user/", {
+      // .get("http://localhost:8000/dj-rest-auth/user/", {
+      .get("http://localhost:8000/users/loggedInUser/", {
         headers: {
           Authorization: `Token ${token}`,
         },
       })
       .then((res) => {
-        // console.log('res', res);
+        console.log("res", res?.data[0]);
         dispatch({
           type: types.USER_DATA,
           payload: {
-            userData: res.data,
+            userData: res?.data[0],
           },
         });
       })

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import AdminMenu from "./menu";
+import { Result, Button } from "antd";
 import AdminHeader from "./header";
 import AdminRoutes from "../adminRoutes";
 import { useNavigate } from "react-router-dom";
 import CheckMobileHook480 from "../../components/checkMobile";
 import { useSelector, useDispatch } from "react-redux";
 
-import { userLogin, getUserData } from "../../store/action";
+import { userLogin, getUserData, userLogout } from "../../store/action";
 
 export default function AdminLayout({ children }) {
   const navigate = useNavigate();
@@ -15,8 +16,14 @@ export default function AdminLayout({ children }) {
 
   const [navbarOpen, setNavbarOpen] = useState(false);
 
+  const [group, setGroup] = useState("");
+
   const token = useSelector((state) => state.AuthReducer.token);
-  const userGlobals = useSelector((state) => state.AuthReducer.globals);
+  const userData = useSelector((state) => state.AuthReducer.userData);
+
+  console.log("userData", userData?.groups && userData?.groups[0]);
+
+  // const group = userData?.groups && userData?.groups[0];
 
   useEffect(() => {
     if (!token) {
@@ -25,7 +32,7 @@ export default function AdminLayout({ children }) {
         dispatch(userLogin(tokenn));
         dispatch(getUserData(tokenn));
       } else {
-        navigate("/admin-signin");
+        navigate("/");
         window.location.reload();
       }
     }
@@ -35,11 +42,36 @@ export default function AdminLayout({ children }) {
     console.log(navbarOpen);
   });
 
-  return (
+  useEffect(() => {
+    if (userData) {
+      setGroup(userData?.groups && userData?.groups[0]);
+    }
+  }, [userData]);
+
+  return group !== 1 ? (
+    <div className="flex items-center justify-center  w-full h-screen">
+      <Result
+        status="403"
+        title="403"
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(userLogout(token));
+            }}
+            className="cursor-pointer w-[15rem] sm:w-[22rem] h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
+          >
+            Log Out
+          </button>
+        }
+      />
+    </div>
+  ) : (
     <div className="flex flex-col w-full h-screen">
       <AdminHeader setNavbarOpen={setNavbarOpen} navbarOpen={navbarOpen} />
 
-      <div className="flex mt-[50px] h-[calc(100vh-50px)]">
+      <div className="flex mt-[50px] h-[calc(100vh-50px)] bg-[green]">
         {!isMobile ? (
           <AdminMenu isMobile={isMobile} />
         ) : (

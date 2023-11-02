@@ -36,7 +36,6 @@ function SignUp1(props) {
   };
 
   const [inputVal, setInputVal] = useState(formState.ID);
-  // const [image, setImage] = useState(formState.ID);
 
   const handleDelete = () => {
     setInputVal(null);
@@ -50,7 +49,6 @@ function SignUp1(props) {
     // console.log(URL.createObjectURL(e.target.files[0]));
   };
 
-  // console.log(formState.ID);
   //datauri**
   const setShowImage = () => {
     return inputVal ? URL.createObjectURL(inputVal) : "";
@@ -165,10 +163,7 @@ function SignUp1(props) {
                 </label>
               </div>
             ) : (
-              <div
-                className="flex mt-3 mb-2 rounded-md "
-                // border border-solid border-[#232627]"
-              >
+              <div className="flex mt-3 mb-2 rounded-md ">
                 <div className="h-[120px]">
                   <img
                     src={setShowImage()}

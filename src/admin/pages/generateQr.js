@@ -82,10 +82,10 @@ export default function GenerateQr() {
 
     setSaved(false);
 
-    console.log("aa", isMobile);
-    console.log("a", expiry);
-    console.log("b", values?.expiryData);
-    console.log("c", expiry?.format("YYYY-MM-DD"));
+    // console.log("aa", isMobile);
+    // console.log("a", expiry);
+    // console.log("b", values?.expiryData);
+    // console.log("c", expiry?.format("YYYY-MM-DD"));
 
     axios
       .post(
