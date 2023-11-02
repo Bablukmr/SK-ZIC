@@ -1,8 +1,18 @@
-import { notification } from "antd";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { notification } from "antd";
+// import SignUp from "../pages/signup";
 
 function SignUp3(props) {
-  const { previousStep, nextStep, formState, handleChange } = props;
+  const {
+    previousStep,
+    setFormState,
+    setSignup,
+    setLoading,
+    nextStep,
+    formState,
+    handleChange,
+  } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,6 +21,12 @@ function SignUp3(props) {
     const password = formState?.password;
     const userEmail = formState?.userEmail;
     const phoneNumber = formState?.phoneNumber;
+    const firstName = formState?.firstName;
+    const lastname = formState?.lastName;
+
+    const rtoName = formState?.rtoName;
+    const address = formState?.address;
+    const email = formState?.email;
 
     if (!userName) {
       notification["error"]({
@@ -53,7 +69,82 @@ function SignUp3(props) {
       return;
     }
 
-    nextStep();
+    // handleChange(true, "loading");
+    // handleChange(true, "signup");
+
+    setSignup(true);
+    setLoading(true);
+
+    console.log("formState.ID", formState.ID);
+
+    const formData = new FormData();
+    formData.append("username", userName);
+    formData.append("password1", password);
+    formData.append("password2", password);
+    formData.append("email", userEmail);
+
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastname);
+    formData.append("img", formState.ID);
+    formData.append("rtoName", rtoName);
+
+    formData.append("address", address);
+    formData.append("email_c", email);
+    formData.append("phoneNumber", phoneNumber);
+
+    const body = formData;
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    axios
+      .post(`http://localhost:8000/users/registerUser/`, body, config)
+      .then((res) => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        setSignup(false);
+        setLoading(false);
+
+        notification["error"]({
+          message: "Error",
+          description: "Something went wrong, try again.",
+        });
+      });
+
+    // axios
+    //   .post("http://localhost:8000/users/registerUser/", {
+    //     username: ,
+    //     password1: ,
+    //     password2: ,
+    //     email: ,
+
+    //     firstName: ,
+    //     lastName: ,
+
+    //     img:
+
+    //     rtoName: ,
+    //     address: ,
+    //     email_c: ,
+    //     : phoneNumber,
+    //   })
+    //   .then((d) => {
+    //     setLoading(false);
+    //   })
+    //   .catch((e) => {
+    //     setSignup(false);
+    //     setLoading(false);
+
+    //     notification["error"]({
+    //       message: "Error",
+    //       description: "Something went wrong, try again.",
+    //     });
+    //     console.log(e);
+    //   });
   };
 
   return (
@@ -204,7 +295,7 @@ function SignUp3(props) {
           type="submit"
           className="cursor-pointer w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
-          Next
+          SIgn Up
         </button>
 
         <div className="flex bg-[rsed] mt-6 items-center pb-8">
