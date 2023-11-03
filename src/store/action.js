@@ -2,6 +2,17 @@ import * as types from "./actionTypes.js";
 import axios from "axios";
 import { notification } from "antd";
 
+export const changeDarkMode = (mode) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.DARK_MODE,
+      payload: {
+        darkMode: mode,
+      },
+    });
+  };
+};
+
 export const userLogin = (token) => {
   return (dispatch) => {
     dispatch({

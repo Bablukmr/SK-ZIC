@@ -13,6 +13,7 @@ const initialAuthState = {
   messages: [],
   newMessage: null,
   session: null,
+  darkMode: false,
 };
 
 const AuthReducer = (state = initialAuthState, { type, payload }) => {
@@ -21,6 +22,12 @@ const AuthReducer = (state = initialAuthState, { type, payload }) => {
       return {
         ...state,
         urlToGo: payload.UrlToGo,
+      };
+
+    case types.DARK_MODE:
+      return {
+        ...state,
+        darkMode: payload.darkMode,
       };
 
     case types.CHAT_MESSAGE:

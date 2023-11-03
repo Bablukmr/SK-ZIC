@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CheckMobileHook480 from "../../components/checkMobile";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+// import { changeDarkMode } from "../../store/action";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
   const mobile = CheckMobileHook480();
   const [promotionData, setPromotionData] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
+  // console.log(darkMode);
 
   useEffect(() => {
     axios
@@ -65,32 +72,17 @@ export default function LandingPage() {
     },
   ];
 
-  const [page, setPage] = useState(1);
   const handlePage = (val) => {
     setPage(val);
   };
-  useEffect(() => {
-    // console.log("Page", page);
-    // alert(page);
-  }, [page]);
 
-  const [darkMode, setDarkmode] = useState(null);
-  // console.log("darkMode", darkMode);
-  const setDarkModeBasedOnTheme = () => {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setDarkmode(true);
-    } else {
-      setDarkmode(false);
-    }
-  };
   useEffect(() => {
-    setDarkModeBasedOnTheme();
+    // let mode = localStorage.getItem("darkMode");
+    // console.log(mode);
   }, []);
 
   const [toggleMobile, setToggleMobile] = useState(true);
+  // console.log("darkMode", darkMode);
 
   return (
     // <div className="flex items-center justify-center h-[2000px]">
@@ -130,25 +122,6 @@ export default function LandingPage() {
     // </div>
     <div className={`${darkMode ? "bg-slate-800 text-white" : ""}`}>
       {/* 1st */}
-      <div className="flex items-center justify-center">
-        <div
-          className={`flex mt-2 relative gap-1 p-1 rounded-full border-solid ${
-            darkMode ? "border-white" : "border-slate-800  "
-          }  h-[20px] items-center justify-center`}
-        >
-          <p onClick={() => setDarkmode(false)} className="cursor-pointer">
-            ☀️
-          </p>
-          <p onClick={() => setDarkmode(true)} className="cursor-pointer">
-            🌙
-          </p>
-          <p
-            className={`absolute ${
-              darkMode ? "right-1" : "left-1"
-            } bg-black h-[20px] w-[20px] rounded-full cursor-pointer`}
-          ></p>
-        </div>
-      </div>
 
       <div
         className={`w-full mt-[50px] py-[40px] md:py-[50px] ${

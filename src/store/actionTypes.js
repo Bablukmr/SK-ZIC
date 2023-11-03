@@ -5,6 +5,10 @@ export const USER_DATA = "USER_DATA";
 
 export const USER_FAVOURITE = "USER_FAVOURITE";
 
+
+export const DARK_MODE = "DARK_MODE";
+
+
 //consoleMenu
 export const CONSOLE_MENU = "CONSOLE_MENU";
 //consoleMenu
