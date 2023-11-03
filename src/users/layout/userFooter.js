@@ -2,7 +2,7 @@
 
 export default function WebFooter() {
   return (
-    <div className=" h-[200px] flex items-center justify-center">
+    <div className=" h-[200px] bg-[pink] flex items-center justify-center">
       <p>footer</p>
     </div>
   );
