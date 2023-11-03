@@ -90,6 +90,8 @@ export default function LandingPage() {
     setDarkModeBasedOnTheme();
   }, []);
 
+  const [toggleMobile, setToggleMobile] = useState(true);
+
   return (
     // <div className="flex items-center justify-center h-[2000px]">
     //   <div className="w-[90%] mt-[50px] gap-y-6 gap-x-4 grid grid-cols-4">
@@ -208,7 +210,7 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Scan:{" "}
+                Scan:
               </span>
               Snap the QR code, unlock rewards.
             </p>
@@ -222,8 +224,8 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Earn:{" "}
-              </span>{" "}
+                Earn:
+              </span>
               Watch your points pile up with every scan.
             </p>
             <p
@@ -236,8 +238,8 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Redeem:{" "}
-              </span>{" "}
+                Redeem:
+              </span>
               Turn points into exciting rewards!
             </p>
             <p
@@ -452,152 +454,325 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="w-[90%] ml-[5%] flex gap-y-4 flex-col-reverse md:flex-row justify-between gap-2 ">
-          <div className="md:w-[50%] flex flex-col gap-3 ">
-            <h2
+        {mobile ? (
+          <div className={`w-[90%] ml-[5%]`}>
+            <h1
               className={`w-full leading-[25px] md:leading-[33px] text-[20px] md:text-[22px] font-medium ${
                 darkMode ? "text-white" : "text-[#333333]"
               }`}
             >
-              How to Add to Home Screen: iOS (Safari):
-            </h2>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
+              How to Add to Home Screen:
+            </h1>
+            <div className="w-full my-6 font-medium flex h-[40px]">
+              <div
+                onClick={() => setToggleMobile(true)}
+                className={`w-[50%] ${
+                  toggleMobile
+                    ? "bg-[#333333] text-white"
+                    : "text-[#333333] bg-[#DEDEDE]"
+                }  h-full flex items-center justify-center`}
               >
-                Step 1.{" "}
-              </span>
-              Open Safari and navigate to our Loyalty Rewards Web App.
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
+                <p> iOS (Safari)</p>
+              </div>
+              <div
+                onClick={() => setToggleMobile(false)}
+                className={`w-[50%]  ${
+                  toggleMobile
+                    ? "text-[#333333] bg-[#DEDEDE]"
+                    : "bg-[#333333] text-white"
+                } h-full flex items-center justify-center`}
               >
-                Step 2.{" "}
-              </span>
-              Tap the "Share" icon at the bottom of the screen.
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 3.{" "}
-              </span>
-              Select "Add to Home Screen."
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 4.{" "}
-              </span>
-              Customize the app's name (if desired) and tap "Add."
-            </p>
+                <p> Android (Chrome)</p>
+              </div>
+            </div>
+            {toggleMobile ? (
+              <div>
+                <div className="w-[90%] ml-[5%] flex gap-y-4 flex-col md:flex-row justify-between gap-2 ">
+                  <div className="md:w-[50%] flex flex-col gap-3 ">
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 1.
+                      </span>
+                      Open Safari and navigate to our Loyalty Rewards Web App.
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 2.
+                      </span>
+                      Tap the "Share" icon at the bottom of the screen.
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 3.
+                      </span>
+                      Select "Add to Home Screen."
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 4.
+                      </span>
+                      Customize the app's name (if desired) and tap "Add."
+                    </p>
+                  </div>
+                  <div
+                    className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                  >
+                    <h1 className="text-base font-normal">IMG</h1>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="w-[90%]  ml-[5%] flex gap-y-4 flex-col justify-between md:flex-row ">
+                  <div className="md:w-[45%] flex flex-col gap-3 ">
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold  ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 1.
+                      </span>
+                      Open Chrome and visit our Loyalty Rewards Web App
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold  ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 2.
+                      </span>
+                      Tap the three-dot menu at the top-right corner.
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold  ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 3.
+                      </span>
+                      Choose "Add to Home screen."
+                    </p>
+                    <p
+                      className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                        darkMode ? "text-slate-400" : "text-[#636363]"
+                      }`}
+                    >
+                      <span
+                        className={`font-semibold  ${
+                          darkMode ? "text-slate-600" : "text-[#333333]"
+                        }`}
+                      >
+                        Step 4.
+                      </span>
+                      Confirm by tapping "Add."
+                    </p>
+                  </div>
+                  <div
+                    className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                  >
+                    <h1 className="text-base font-normal">IMG</h1>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-          <div
-            className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
-          >
-            <h1 className="text-base font-normal">IMG</h1>
-          </div>
-        </div>
+        ) : (
+          <div className="w-full">
+            <div className="w-[90%] ml-[5%] flex gap-y-4 flex-col-reverse md:flex-row justify-between gap-2 ">
+              <div className="md:w-[50%] flex flex-col gap-3 ">
+                <h2
+                  className={`w-full leading-[25px] md:leading-[33px] text-[20px] md:text-[22px] font-medium ${
+                    darkMode ? "text-white" : "text-[#333333]"
+                  }`}
+                >
+                  How to Add to Home Screen: iOS (Safari):
+                </h2>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 1.
+                  </span>
+                  Open Safari and navigate to our Loyalty Rewards Web App.
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 2.
+                  </span>
+                  Tap the "Share" icon at the bottom of the screen.
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 3.
+                  </span>
+                  Select "Add to Home Screen."
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 4.
+                  </span>
+                  Customize the app's name (if desired) and tap "Add."
+                </p>
+              </div>
+              <div
+                className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+              >
+                <h1 className="text-base font-normal">IMG</h1>
+              </div>
+            </div>
 
-        <div className="w-[90%] mt-[50px] ml-[5%] flex gap-y-4 flex-col justify-between md:flex-row  ">
-          <div
-            className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
-          >
-            <h1 className="text-base font-normal">IMG</h1>
-          </div>
+            <div className="w-[90%] mt-[50px] ml-[5%] flex gap-y-4 flex-col justify-between md:flex-row  ">
+              <div
+                className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+              >
+                <h1 className="text-base font-normal">IMG</h1>
+              </div>
 
-          <div className="md:w-[45%] flex flex-col gap-3 ">
-            <h2
-              className={`w-full leading-[25px] md:leading-[33px] text-[20px] md:text-[22px] font-medium ${
-                darkMode ? "text-white" : "text-[#333333]"
-              }`}
-            >
-              Add to Home Screen: Your Loyalty Rewards On the Go!
-            </h2>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold  ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 1.{" "}
-              </span>
-              Open Chrome and visit our Loyalty Rewards Web App
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold  ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 2.{" "}
-              </span>
-              Tap the three-dot menu at the top-right corner.
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold  ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 3.{" "}
-              </span>
-              Choose "Add to Home screen."
-            </p>
-            <p
-              className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-                darkMode ? "text-slate-400" : "text-[#636363]"
-              }`}
-            >
-              <span
-                className={`font-semibold  ${
-                  darkMode ? "text-slate-600" : "text-[#333333]"
-                }`}
-              >
-                Step 4.{" "}
-              </span>
-              Confirm by tapping "Add."
-            </p>
+              <div className="md:w-[45%] flex flex-col gap-3 ">
+                <h2
+                  className={`w-full leading-[25px] md:leading-[33px] text-[20px] md:text-[22px] font-medium ${
+                    darkMode ? "text-white" : "text-[#333333]"
+                  }`}
+                >
+                  Add to Home Screen: Your Loyalty Rewards On the Go!
+                </h2>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold  ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 1.
+                  </span>
+                  Open Chrome and visit our Loyalty Rewards Web App
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold  ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 2.
+                  </span>
+                  Tap the three-dot menu at the top-right corner.
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold  ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 3.
+                  </span>
+                  Choose "Add to Home screen."
+                </p>
+                <p
+                  className={`p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+                    darkMode ? "text-slate-400" : "text-[#636363]"
+                  }`}
+                >
+                  <span
+                    className={`font-semibold  ${
+                      darkMode ? "text-slate-600" : "text-[#333333]"
+                    }`}
+                  >
+                    Step 4.
+                  </span>
+                  Confirm by tapping "Add."
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {/* Benefits of Adding to Home Screen */}
       <div className="w-full mt-[120px]  flex flex-col items-center justify-center">
