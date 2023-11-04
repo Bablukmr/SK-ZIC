@@ -404,7 +404,7 @@ export default function LandingPage() {
               >
                 {/* <h1>{img.id}</h1> */}
                 <img
-                  onClick={() => setCurrentImageIndex(index)}
+                  // onClick={() => setCurrentImageIndex(index)}
                   src={img.url}
                   alt="/"
                   className="w-full h-full"
