@@ -86,50 +86,14 @@ export default function LandingPage() {
   // console.log("darkMode", darkMode);
 
   return (
-    // <div className="flex items-center justify-center h-[2000px]">
-    //   <div className="w-[90%] mt-[50px] gap-y-6 gap-x-4 grid grid-cols-4">
-    //     {promotionData.map((reward) => (
-    //       <div
-    //         key={reward.id}
-    //         className="p-2 flex flex-col items-center justify-center gap-1 rounded-md"
-    //       >
-    //         <div className="w-full h-[120px] rounded-t-md">
-    //           <img
-    //             src={reward.img}
-    //             height={120}
-    //             width={"100%"}
-    //             className="rounded-t-md "
-    //           />
-    //           {/* border-0 w-full h-full  border-none */}
-    //         </div>
-
-    //         <div className="flex flex-col w-full gap-y-1 my-1 items-start justify-start">
-    //           <p className="w-full text-base font-medium m-0 p-0">
-    //             {reward.title}
-    //           </p>
-    //           <p className="w-full text-[#979797] text-xs m-0 p-0">
-    //             {reward.des}
-    //           </p>
-    //           <p className="w-full text-base font-medium m-0 p-0">
-    //             {reward.redeem_points}
-    //           </p>
-    //         </div>
-    //         <button className=" w-full bg-[#23262d] text-white py-2 cursor-pointer rounded-md">
-    //           Redeem
-    //         </button>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
-    <div className={`pt-[50px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
-      {/* 1st */}
+    <div className={`pt-[20px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
       <div
-        className={`w-full  py-[40px] md:py-[50px] ${
+        className={`w-full h-[550px] ${
           darkMode ? "bg-slate-700 " : "bg-[#EEEEEE]"
         }  flex items-center justify-center`}
       >
-        <div className="w-[90%] flex flex-col gap-2 md:flex-row">
-          <div className="w-full md:w-[50%]  flex  flex-col items-start justify-center">
+        <div className="w-full md:w-[50%]  flex  flex-col items-center ">
+          <div className="w-[80%] ml-[5%]">
             <h1
               className={`leading-[50px] lg:leading-[60px] xl:leading-[80px] 2xl:leading-[120px] text-[40px] lg:text-[60px] 2xl:text-[80px] font-normal ${
                 darkMode ? "" : "text-[#333333]"
@@ -145,16 +109,7 @@ export default function LandingPage() {
               Stickers are components and pre-defined elements you can quickly
               copy and start using in your designs. Stickers.
             </p>
-            {/* <button
-              className={` ${
-                darkMode
-                  ? "bg-red-600 shadow-none text-white "
-                  : "text-white bg-[#333333]"
-              }  px-6 py-2 rounded-md my-4 cursor-pointer
-              outline-none border-transparent focus:border-transparent focus:ring-0`}
-            >
-              Register Now
-            </button> */}
+
             <div className="my-4">
               <MyButton
                 type=""
@@ -166,11 +121,12 @@ export default function LandingPage() {
               />
             </div>
           </div>
-          <div
-            className={`w-[50%] bg-[#EEEEEE] flex items-center justify-center`}
-          >
-            <h1 className="text-base font-normal">IMG</h1>
-          </div>
+        </div>
+        <div
+          // bg-[#EEEEEE]
+          className={`w-[50%] h-full flex items-center justify-center`}
+        >
+          <img src="/sookee-heart.png" className="h-[90%]" />
         </div>
       </div>
       {/* Get Rewarded in 3 Simple Steps! */}
@@ -621,7 +577,7 @@ export default function LandingPage() {
                   <div
                     className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
                   >
-                    <h1 className="text-base font-normal">IMG</h1>
+                    <h1 className="text-base font-normal">IDDDMG</h1>
                   </div>
                 </div>
               </div>
@@ -698,7 +654,8 @@ export default function LandingPage() {
               <div
                 className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
               >
-                <h1 className="text-base font-normal">IMG</h1>
+                <img  src = "/Asset 12@2x-8.png" />
+
               </div>
             </div>
 

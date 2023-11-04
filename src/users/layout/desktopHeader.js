@@ -32,7 +32,7 @@ export default function DesktopHeader() {
       <div className="flex items-center justify-center">
         <div
           className={`flex  relative gap-1 p-1 rounded-full ${
-            darkMode ? "border-slate-800" : "border-slate-300  "
+            darkMode ? "border-[#8c8c8c]": "border-slate-300  "
           }  h-[20px] items-center justify-center border border-solid`}
         >
           <p

@@ -38,7 +38,7 @@ function AppSideMenu(props) {
           <li onClick={toggelNavbar} className="w-[90%] ml-[5%]">
             <Link to="/" className="no-underline text-white">
               <button className="w-full border-none text-left pl-4 bg-[#23262d] py-4 rounded-md text-white">
-                Edit Profile
+                Profile
               </button>
             </Link>
           </li>
