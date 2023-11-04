@@ -84,16 +84,47 @@ export default function LandingPage() {
 
   const [toggleMobile, setToggleMobile] = useState(true);
   // console.log("darkMode", darkMode);
+  const brandingImg = [
+    { id: 1, url: "/poster-1.jpg" },
+    { id: 2, url: "/poster-2.jpg" },
+    { id: 3, url: "/poster-3.jpg" },
+    { id: 4, url: "/poster-2.jpg" },
+    { id: 5, url: "/poster-1.jpg" },
+    { id: 6, url: "/poster-3.jpg" },
+    { id: 7, url: "/poster-1.jpg" },
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let abc = currentImageIndex + (1 % brandingImg.length);
+      console.log("a", abc);
+      console.log("b", brandingImg.length);
+      console.log("c", currentImageIndex + 1);
+      // setCurrentImageIndex(currentImageIndex + 1);
+      if (currentImageIndex + 1 === brandingImg.length - 2) {
+        setCurrentImageIndex(0);
+      } else {
+        setCurrentImageIndex(currentImageIndex + 1);
+      }
+      //  % brandingImg.length);
+      // setCurrentImageIndex((currentImageIndex + 1) % brandingImg.length);
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [currentImageIndex]);
 
   return (
-    <div className={`pt-[20px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
+    <div className={`pt-[50px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
       <div
         className={`w-full h-[550px] ${
           darkMode ? "bg-slate-700 " : "bg-[#EEEEEE]"
-        }  flex items-center justify-center`}
+        }  flex  md:flex-row flex-col items-center justify-center md:relative`}
       >
         <div className="w-full md:w-[50%]  flex  flex-col items-center ">
-          <div className="w-[80%] ml-[5%]">
+          <div className="w-[90%] md:w-[80%] ml-[5%]">
             <h1
               className={`leading-[50px] lg:leading-[60px] xl:leading-[80px] 2xl:leading-[120px] text-[40px] lg:text-[60px] 2xl:text-[80px] font-normal ${
                 darkMode ? "" : "text-[#333333]"
@@ -126,7 +157,11 @@ export default function LandingPage() {
           // bg-[#EEEEEE]
           className={`w-[50%] h-full flex items-center justify-center`}
         >
-          <img src="/sookee-heart.png" className="h-[90%]" />
+          <img
+            src="/sookee-heart.png"
+            alt="img"
+            className="w-[80%] md:w-[70%] lg:w-[35%] xl:w-[25%] lg:absolute -top-6"
+          />
         </div>
       </div>
       {/* Get Rewarded in 3 Simple Steps! */}
@@ -198,42 +233,6 @@ export default function LandingPage() {
         </div>
       </div>
       {/* rewards */}
-      {/* <div className="flex items-center justify-center h-[2000px]">
-        <div className="w-[90%] mt-[50px] gap-y-6 gap-x-4 grid grid-cols-4">
-          {promotionData.map((reward) => (
-            <div
-              key={reward.id}
-              className="p-2 flex flex-col items-center justify-center gap-1 rounded-md"
-            >
-              <div className="w-full h-[120px] rounded-t-md">
-                <img
-                  src={reward.img}
-                  alt=""
-                  height={120}
-                  width={"100%"}
-                  className="rounded-t-md "
-                />
-               
-              </div>
-
-              <div className="flex flex-col w-full gap-y-1 my-1 items-start justify-start">
-                <p className="w-full text-base font-medium m-0 p-0">
-                  {reward.title}
-                </p>
-                <p className="w-full text-[#979797] text-xs m-0 p-0">
-                  {reward.des}
-                </p>
-                <p className="w-full text-base font-medium m-0 p-0">
-                  {reward.redeem_points}
-                </p>
-              </div>
-              <button className=" w-full bg-[#23262d] text-white py-2 cursor-pointer rounded-md">
-                Redeem
-              </button>
-            </div>
-          ))}
-        </div>
-      </div> */}
       {mobile ? (
         //for mobile
         <div className="w-full flex flex-col items-center justify-center gap-y-4">
@@ -243,7 +242,13 @@ export default function LandingPage() {
                 key={reward.id}
                 className="border-2 p-2 flex flex-col items-center justify-center gap-2 rounded-md"
               >
-                <div className="bg-slate-200 w-full h-[70px]"> </div>
+                <div className=" w-full h-[80px] rounded-md">
+                  <img
+                    src="/2df2-crop.jpg"
+                    alt="img"
+                    className="w-full h-full rounded-md"
+                  />{" "}
+                </div>
                 <p className="m-0 p-0 w-full text-base font-medium">
                   {reward.title}
                 </p>
@@ -279,13 +284,19 @@ export default function LandingPage() {
       ) : (
         // for desktop
         <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-[90%] mt-[120px] gap-4 grid grid-cols-4">
+          <div className="w-[90%] mt-[120px] gap-4 grid grid-cols-4 ">
             {rewardData.map((reward) => (
               <div
                 key={reward.id}
                 className="border-2 p-2 flex flex-col items-center justify-center gap-2 rounded-md"
               >
-                <div className="bg-slate-200 w-full h-[70px]"> </div>
+                <div className=" w-full md:h-[80px] lg:h-[100px] xl:h-[150px]  rounded-md">
+                  <img
+                    src="/2df2-crop.jpg"
+                    alt="img"
+                    className="w-full h-full rounded-md"
+                  />
+                </div>
                 <p className="m-0 p-0 w-full text-base font-medium">
                   {reward.title}
                 </p>
@@ -374,17 +385,32 @@ export default function LandingPage() {
             Branding & Promotions
           </h1>
           <p
-            className={`w-[60%] md:w-[50%] xl:w-[40%] 2xl:w-[30%] text-center p-0 m-0 mb-4 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal  ${
+            className={`w-[80%] md:w-[50%] xl:w-[40%] 2xl:w-[30%] text-center p-0 m-0 mb-4 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal  ${
               darkMode ? "text-slate-400" : "text-[#636363]"
             }  `}
           >
             Stickers are components and pre-defined elements you...
           </p>
-
-          <div className="flex my-4 w-full items-center justify-center gap-9">
-            <div className={`w-[200px] h-[200px] bg-[#EEEEEE]`}></div>
-            <div className={`w-[200px] h-[200px] bg-[#EEEEEE]`}></div>
-          </div>
+        </div>
+        <div className="w-[90%] md:w-[90%] lg:w-[70%] xl:w-[60%] grid items-center justify-center mt-[40px] md:mt-[50px] grid-cols-3 gap-6 ">
+          {brandingImg
+            .slice(currentImageIndex, currentImageIndex + 3)
+            .map((img, index) => (
+              <div
+                key={img.id}
+                className={`md:w-[200px] ${
+                  index === 1 ? "transform scale-125" : ""
+                }`}
+              >
+                {/* <h1>{img.id}</h1> */}
+                <img
+                  onClick={() => setCurrentImageIndex(index)}
+                  src={img.url}
+                  alt="/"
+                  className="w-full h-full"
+                />
+              </div>
+            ))}
         </div>
       </div>
 
@@ -507,9 +533,13 @@ export default function LandingPage() {
                     </p>
                   </div>
                   <div
-                    className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                    className={`md:w-[40%] h-[300px] rounded-md mt-[10px]  flex items-center justify-center`}
                   >
-                    <h1 className="text-base font-normal">IMG</h1>
+                    <img
+                      src="/Asset 12@2x-8.png"
+                      alt="/"
+                      className="h-[85%] w-[80%]"
+                    />
                   </div>
                 </div>
               </div>
@@ -575,9 +605,13 @@ export default function LandingPage() {
                     </p>
                   </div>
                   <div
-                    className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                    className={`md:w-[40%] h-[250px] mt-[10px] rounded-md  flex items-center justify-center`}
                   >
-                    <h1 className="text-base font-normal">IDDDMG</h1>
+                    <img
+                      src="/Asset 6.png"
+                      alt="/"
+                      className="h-[85%] w-[80%]"
+                    />
                   </div>
                 </div>
               </div>
@@ -652,18 +686,21 @@ export default function LandingPage() {
                 </p>
               </div>
               <div
-                className={`md:w-[40%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                className={`md:w-[40%] md:h-[300px] lg:h-[350px] rounded-md flex items-center justify-center`}
               >
-                <img  src = "/Asset 12@2x-8.png" />
-
+                <img
+                  src="/Asset 12@2x-8.png"
+                  alt="/"
+                  className="h-[95%] w-[80%]"
+                />
               </div>
             </div>
 
             <div className="w-[90%] mt-[50px] ml-[5%] flex gap-y-4 flex-col justify-between md:flex-row  ">
               <div
-                className={`md:w-[45%] min-h-[200px] bg-[#EEEEEE]  flex items-center justify-center`}
+                className={`md:w-[40%] lg:w-[45%] md:h-[300px]   lg:h-[350px]  flex items-center justify-center`}
               >
-                <h1 className="text-base font-normal">IMG</h1>
+                <img src="/Asset 6.png" alt="/" className="h-[95%] w-[80%]" />
               </div>
 
               <div className="md:w-[45%] flex flex-col gap-3 ">
@@ -736,7 +773,7 @@ export default function LandingPage() {
         )}
       </div>
       {/* Benefits of Adding to Home Screen */}
-      <div className="w-full mt-[120px]  flex flex-col items-center justify-center">
+      <div className="w-full mt-[120px] pb-[50px] flex flex-col items-center justify-center">
         <div className="w-[90%] md:w-[80%] flex flex-col gap-3 items-center justify-center">
           <h1
             className={`w-full md:w-[50%] leading-[30px] mb-3 md:leading-[40px] lg:leading-[50px] 2xl:leading-[60px] text-[22px] lg:text-[30px] 2xl:text-[35px] font-normal  ${
@@ -755,10 +792,33 @@ export default function LandingPage() {
             when connected. Effortless Engagement: Engage with the app
             seamlessly, even when you're on the go.
           </p>
-          <div className="w-full md:w-[50%] my-10 h-[200px] md:h-[300px] bg-[#EEEEEE] flex items-center justify-center">
+          {/* <div className="w-full md:w-[50%] my-10 h-[200px] md:h-[300px] bg-[#EEEEEE] flex items-center justify-center">
             IMG
-          </div>
+          </div> */}
         </div>
+
+        {/* <div
+          className={`w-full my-10 h-[700px] md:h-[400px] ${
+            darkMode ? "bg-slate-700" : "bg-[#383434]"
+          }   flex justify-center items-center`}
+        >
+          <div className="w-[80%] ml-[10%] md:ml-0 flex-col flex md:flex-row items-center justify-center ">
+            <div className="w-[90%] ml-[5%] md:w-[40%] h-[300px]">
+              <img
+                src="/sookee-thumbs-up.png"
+                alt="/"
+                className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
+              />
+            </div>
+            <div className="w-[90%] ml-[5%] md:w-[40%] h-[300px]">
+              <img
+                src="/Asset 12@2x-8.png"
+                alt="/"
+                className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
+              />
+            </div>
+          </div>
+        </div> */}
       </div>
     </div>
   );
