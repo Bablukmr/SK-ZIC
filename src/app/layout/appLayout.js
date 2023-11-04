@@ -16,11 +16,13 @@ import {
 } from "../../store/action";
 import axios from "axios";
 import WebSocketInstance from "../../chat/websocket";
+import CheckMobileHook480 from "../../components/checkMobile";
+import MobileFooter from "./mobileFooter";
 
 export default function AppLayout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const mobile = CheckMobileHook480();
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
@@ -87,39 +89,49 @@ export default function AppLayout() {
     dispatch(newMessage(message));
   };
 
-  useEffect(() => {
-    if (!token) {
-      const tokenn = localStorage.getItem("token");
-      if (tokenn) {
-        dispatch(userLogin(tokenn));
-        dispatch(getUserData(tokenn));
-        const id = searchParams.get("id");
-        let route;
-        if (id) {
-          route = location?.pathname + "?id=" + id;
-        } else {
-          route = location?.pathname;
-        }
-        dispatch(UrlTo(route));
-      } else {
-        navigate("/signin");
-        window.location.reload();
-      }
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (!token) {
+  //     const tokenn = localStorage.getItem("token");
+  //     if (tokenn) {
+  //       dispatch(userLogin(tokenn));
+  //       dispatch(getUserData(tokenn));
+  //       const id = searchParams.get("id");
+  //       let route;
+  //       if (id) {
+  //         route = location?.pathname + "?id=" + id;
+  //       } else {
+  //         route = location?.pathname;
+  //       }
+  //       dispatch(UrlTo(route));
+  //     } else {
+  //       navigate("/signin");
+  //       window.location.reload();
+  //     }
+  //   }
+  // }, [token]);
 
-  return !token ? (
-    <div className="flex items-center h-screen">
-      <LoadingAni />
-    </div>
-  ) : (
-    <div className="w-full bg-[redd]">
+  // return !token ? (
+  //   <div className="flex items-center h-screen">
+  //     <LoadingAni />
+  //   </div>
+  // ) :
+  return (
+    <div className="w-full">
       <div className="h-[60px]">
         <AppHeader count={count} />
       </div>
-      <div className="min-h-[calc(100vh-60px)] bg-[greeen]">
+      <div
+        className={`${
+          mobile ? "max-h-[calc(100vh-120px)]" : "max-h-[calc(100vh-60px)]"
+        } bg-[greenn]`}
+      >
         <AppRoutes />
       </div>
+      {mobile && (
+        <div className="h-[60px]">
+          <MobileFooter />
+        </div>
+      )}
     </div>
   );
 }
