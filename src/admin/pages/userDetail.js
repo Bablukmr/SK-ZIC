@@ -39,7 +39,7 @@ export default function UserDetail() {
         });
 
       axios
-        .get(`http://localhost:8000/users/user-id/?id=${id}`, {
+        .get(`http://localhost:8000/users/user-id?id=${id}`, {
           headers: {
             Authorization: `Token ${token}`,
           },

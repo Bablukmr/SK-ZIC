@@ -52,6 +52,7 @@ export default function VerifyUsers() {
         setInitLoading(false);
         setData(d?.data?.results);
         setList(d?.data?.results);
+        console.log("ddd", d.data.results);
 
         if (!d.data.next) {
           setNext(false);
@@ -120,34 +121,58 @@ export default function VerifyUsers() {
 
   const onClick = (id) => {
     axios
-      .put(
-        `http://localhost:8000/users/update-user/${id}`,
-        {
-          is_active: true,
+      .get(`http://localhost:8000/users/update-user?id=${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      )
+      })
       .then((d) => {
         notification["success"]({
           message: "Success !!",
           description: "User Verified.",
         });
-
         setData(data.filter((d) => d.id !== id));
         setList(list.filter((d) => d.id !== id));
       })
-
       .catch((e) => {
+        // console.log(e);
         notification["error"]({
           message: "Error !!",
           description: "Something went wron, try again..",
         });
       });
   };
+
+  // const onClick = (id) => {
+  //   axios
+  //     .put(
+  //       `http://localhost:8000/users/update-user/${id}`,
+  //       {
+  //         is_active: true,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Token ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((d) => {
+  //       notification["success"]({
+  //         message: "Success !!",
+  //         description: "User Verified.",
+  //       });
+
+  //       setData(data.filter((d) => d.id !== id));
+  //       setList(list.filter((d) => d.id !== id));
+  //     })
+
+  //     .catch((e) => {
+  //       notification["error"]({
+  //         message: "Error !!",
+  //         description: "Something went wron, try again..",
+  //       });
+  //     });
+  // };
 
   return (
     <>

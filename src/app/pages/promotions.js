@@ -74,11 +74,26 @@ export default function Promotions() {
         });
       })
       .catch((e) => {
-        setLoading(false);
-        notification["error"]({
-          message: "Error !!",
-          description: "Something went wrong, try again.",
-        });
+        if (e?.response) {
+          setLoading(false);
+          if (e?.response?.data) {
+            notification["error"]({
+              message: "Error !!",
+              description: e.response.data?.error,
+            });
+          } else {
+            notification["error"]({
+              message: "Error !!",
+              description: "Something went wrong, try again.",
+            });
+          }
+        } else {
+          notification["error"]({
+            message: "Error !!",
+            description: "Something went wrong, try again.",
+          });
+        }
+        // console.log(e.response.data.error);
       });
   };
 
