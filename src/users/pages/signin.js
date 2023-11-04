@@ -5,8 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { userLogIn, userLogin, getUserData } from "../../store/action";
 import { notification } from "antd";
 import LoadingAni from "../../components/loading";
+import MyButton from "../../components/button";
 
 export default function UserSignIn() {
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
   const isMobile = CheckMobileHook480();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,11 +68,19 @@ export default function UserSignIn() {
       ) : (
         <>
           {!isMobile && (
-            <div className="w-1/2 flex items-center justify-center">
+            <div
+              className={`w-1/2 h-full ${
+                darkMode ? "bg-slate-800 text-white" : ""
+              }  flex items-center justify-center`}
+            >
               {/* <img src="/2df2.jpg" width={300} height={300} /> */}
             </div>
           )}
-          <div className="bg-[yelloww] w-full lg:w-1/2 flex flex-col justify-center items-center h-full">
+          <div
+            className={`${
+              darkMode ? "bg-slate-800 text-white" : ""
+            } w-full lg:w-1/2 flex flex-col justify-center items-center h-full`}
+          >
             <div className=" bg-[oange] w-full mt-[-40px] lg:mt-[-20px] flex flex-col items-center">
               <div className="bg-[redd] w-3/4 lg:w-1/2">
                 <h2 className="text-left">Sign In</h2>
@@ -88,7 +98,7 @@ export default function UserSignIn() {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-4 h-5"
+                      className="w-4 h-5 text-[#232627]"
                     >
                       <path
                         strokeLinecap="round"
@@ -123,7 +133,7 @@ export default function UserSignIn() {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-4 h-5"
+                      className="w-4 h-5 text-[#232627]"
                     >
                       <path
                         strokeLinecap="round"
@@ -146,23 +156,37 @@ export default function UserSignIn() {
                 <small className="cursor-pointer font-semibold w-[120px]">
                   <Link
                     to="/forget-password"
-                    className="text-black no-underline"
+                    className={` ${
+                      darkMode ? "text-slate-400" : "text-black"
+                    } no-underline`}
                   >
                     Forgot Password ?
                   </Link>
                 </small>
-                <button
-                  className="h-[35px] bg-[#23262d] text-white rounded-md cursor-pointer
-                                  outline-none border-transparent focus:border-transparent focus:ring-0"
+                {/* <button
+                  className={`h-[35px] bg-[#23262d] text-white rounded-md cursor-pointer
+                  outline-none border-transparent focus:border-transparent focus:ring-0`}
                   onClick={ss}
                 >
                   Login
-                </button>
+                </button> */}
+
+                <MyButton
+                 text="Login"
+                 mdh="h-[35px]"
+                 mdw="w-full"
+                 bgColor={`${darkMode ? "bg-red-500":"bg-[#23262d]"}`}
+                 textColor="text-white"
+                 onClick={ss}
+                />
+
                 <div className="flex bg-[rsed] h-[40px] items-center">
                   <small className="p-0 m-0">Don't have an account? </small>
                   <Link
                     to="/signup"
-                    className="underline ml-2 text-black mt-[-5px]"
+                    className={`underline ml-2 ${
+                      darkMode ? "text-slate-400" : "text-black"
+                    } mt-[-5px]`}
                   >
                     <small className="p-0 m-0">Sign Up Now</small>
                   </Link>

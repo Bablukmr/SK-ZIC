@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { notification } from "antd";
+import MyButton from "../../components/button";
+import { useSelector } from "react-redux";
 
 export default function ForgetPassword() {
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
   const [email, setEmail] = useState("");
 
   const sendEmail = (e) => {
@@ -35,7 +38,9 @@ export default function ForgetPassword() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-60px)] items-center justify-center">
+    <div className={`${
+      darkMode ? "bg-slate-800 text-white" : ""
+    }  flex h-[calc(100vh-60px)] items-center justify-center`}>
       <form
         onSubmit={sendEmail}
         className="w-[75%] sm:w-1/4 mt-[-20px] flex flex-col items-center justify-center"
@@ -44,14 +49,14 @@ export default function ForgetPassword() {
           className="border-[#232627] w-full mt-2  bg-[#fafafa]
          rounded-md border border-solid flex items-center justify-center"
         >
-          <div className="w-[8%] flex justify-center ">
+          <div className=" px-2 flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-5"
+              className="w-4 h-5 text-[#232627]"
             >
               <path
                 strokeLinecap="round"
@@ -64,18 +69,26 @@ export default function ForgetPassword() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email"
-            className=" text-sm rounded-md h-1 w-full bg-[#fafafa] border-none  outline-none py-4 px-2"
+            className=" text-sm rounded-md h-1 w-full bg-[#fafafa] border-none  outline-none py-4 pr-2"
           />
         </div>
 
         <br />
-        <button
+        {/* <button
           type="submit"
           className="cursor-pointer w-full h-[2.3rem] rounded-md
                    bg-[#333333] hover:bg-[#333333de] text-white"
         >
           Send Recovery Mail
-        </button>
+        </button> */}
+          <MyButton
+                 text="Login"
+                 mdh="h-[35px]"
+                 mdw="w-full"
+                 bgColor={`${darkMode ? "bg-red-500":"bg-[#23262d]"}`}
+                 textColor="text-white"
+                 type="submit"
+                />
       </form>
     </div>
   );

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { notification } from "antd";
+import MyButton from "../../components/button";
+import { useSelector } from "react-redux";
 // import SignUp from "../pages/signup";
 
 function SignUp3(props) {
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
   const {
     previousStep,
     setFormState,
@@ -148,32 +151,33 @@ function SignUp3(props) {
   };
 
   return (
-    <div className="sm:relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center">
-    <div className="w-full flex">
-      <div
-       className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
-       onClick={previousStep}
-     >
-       <svg
-         xmlns="http://www.w3.org/2000/svg"
-         fill="none"
-         viewBox="0 0 24 24"
-         strokeWidth={1}
-         stroke="currentColor"
-         className="w-10 h-10"
-       >
-         <path
-           strokeLinecap="round"
-           strokeLinejoin="round"
-           d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-         />
-       </svg>
-     </div>
-     <div className="sm:absolute mr-[22%] w-full flex items-center justify-center">
-       <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
-     </div>
-    </div>
-
+    <div className={` ${
+      darkMode ? "bg-slate-800 text-white" : ""
+    }  sm:relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center`}>
+      <div className="w-full flex">
+        <div
+          className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
+          onClick={previousStep}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1}
+            stroke="currentColor"
+            className="w-10 h-10 "
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+        <div className="sm:absolute mr-[22%] w-full flex items-center justify-center">
+          <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
+        </div>
+      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -190,7 +194,7 @@ function SignUp3(props) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-5"
+              className="w-4 h-5 text-[#232627]"
             >
               <path
                 strokeLinecap="round"
@@ -218,7 +222,7 @@ function SignUp3(props) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-5"
+              className="w-4 h-5 text-[#232627]"
             >
               <path
                 strokeLinecap="round"
@@ -246,7 +250,7 @@ function SignUp3(props) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-5"
+              className="w-4 h-5 text-[#232627]"
             >
               <path
                 strokeLinecap="round"
@@ -267,14 +271,14 @@ function SignUp3(props) {
           <label>
             <small>Phone Number</small>
           </label>
-          <div className="border-[#232627] mt-2 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
+          <div className="border-[#232627] mt-2 mb-3 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-5"
+              className="w-4 h-5 text-[#232627]"
             >
               <path
                 strokeLinecap="round"
@@ -291,17 +295,26 @@ function SignUp3(props) {
             />
           </div>
         </div>
-        <button
+        {/* <button
           type="submit"
           className="cursor-pointer w-full h-[2.3rem] mt-3 rounded-md bg-[#333333] hover:bg-[#333333de] text-white"
         >
           SIgn Up
-        </button>
-
+        </button> */}
+        <MyButton
+          //  className="mt-5"
+          type="submit"
+          text=" SIgn Up"
+          mdh="h-[35px]"
+          mdw="w-full"
+          bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+          textColor="text-white"
+        />
         <div className="flex bg-[rsed] mt-6 items-center pb-8">
           <small className="p-0 m-0">Already have an account? </small>
           <Link to="/signin" className="underline ml-2 text-black mt-[-5px]">
-            <small className="p-0 m-0">Login Now</small>
+            <small className={`p-0 m-0  ${darkMode ? "text-slate-400" : "text-black"
+                    } underline`}>Login Now</small>
           </Link>
         </div>
       </form>
