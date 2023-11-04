@@ -55,6 +55,7 @@ export default function ManagePromotions() {
         });
       })
       .catch((e) => {
+        console.log(e.response);
         setLoading(false);
         notification["error"]({
           message: "Error !!",

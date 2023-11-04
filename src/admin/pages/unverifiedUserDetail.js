@@ -32,17 +32,11 @@ function UnverifiedUserDetail() {
 
   const onClick = () => {
     axios
-      .put(
-        `http://localhost:8000/users/update-user/${id}`,
-        {
-          is_active: true,
+      .get(`http://localhost:8000/users/update-user?id=${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      )
+      })
       .then((d) => {
         notification["success"]({
           message: "Success !!",
@@ -57,6 +51,34 @@ function UnverifiedUserDetail() {
         });
       });
   };
+
+  // const onClick = () => {
+  //   axios
+  //     .put(
+  //       `http://localhost:8000/users/update-user/${id}`,
+  //       {
+  //         is_active: true,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Token ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((d) => {
+  //       notification["success"]({
+  //         message: "Success !!",
+  //         description: "User Verified.",
+  //       });
+  //       navigate("/admin/verify-users");
+  //     })
+  //     .catch((e) => {
+  //       notification["error"]({
+  //         message: "Error !!",
+  //         description: "Something went wron, try again..",
+  //       });
+  //     });
+  // };
 
   const isMobile = CheckMobileHook480();
   return (

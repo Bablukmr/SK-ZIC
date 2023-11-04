@@ -35,8 +35,9 @@ export default function ManageUsers() {
         }
       )
       .then((d) => {
+        console.log("tttttttt", d.data);
         setLoading(false);
-        setApiValue(d.data);
+        setApiValue(d.data?.results);
       })
       .catch((e) => {
         setLoading(false);
@@ -107,7 +108,7 @@ export default function ManageUsers() {
                 <small className="w-3/4 text-left">Profile</small>
               </div>
             )}
-            {apiValue.map((d, index) => (
+            {apiValue?.map((d, index) => (
               <div className="flex mt-2 border-[#f5f5f5] py-2 border-0 border-solid border-b-2">
                 <div className="flex w-[65%] md:w-[40%] justify-center">
                   <p className="w-1/4 text-left">
