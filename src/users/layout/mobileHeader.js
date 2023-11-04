@@ -3,6 +3,7 @@ import SideMenu from "./sideMenu";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { changeDarkMode } from "../../store/action";
+import MyButton from "../../components/button";
 
 export default function MobileHeader() {
   const darkMode = useSelector((state) => state.AuthReducer.darkMode);
@@ -17,7 +18,11 @@ export default function MobileHeader() {
 
   return (
     <>
-      <div className="bg-white h-[60px] flex justify-between shadow-[0px_1px_10px_0px_#f0f0f0]">
+      <div
+        className={`${
+          darkMode ? "bg-slate-700 text-white" : "bg-white"
+        } h-[60px] flex justify-between shadow-[0px_1px_10px_0px_#f0f0f0]`}
+      >
         <div className="flex justify-center items-center w-1/5 bg-[ccyan]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +71,18 @@ export default function MobileHeader() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center w-[30%] bg-[ccyan]">
+        <div className="flex justify-center items-center w-[30%] bg-[ccyan] ">
           <Link to="/signin" className="no-underline text-black">
-            <button className="border-none py-2 px-4 bg-[#fff]">Log In</button>
+            {/* <button className="border-none py-2 px-4 bg-[#fff]">Log In</button> */}
+            <MyButton
+              text="Log In"
+              // mdh="h-[30px]"
+              // mdw="w-[120px]"
+              // bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+              bgColor="bg-transparent"
+              // bgColor="bg-[#23262d]"
+              textColor={`${darkMode ? "text-white" : "text-black"}`}
+            />
           </Link>
         </div>
 

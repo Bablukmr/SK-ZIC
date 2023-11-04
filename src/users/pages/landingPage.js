@@ -3,6 +3,7 @@ import axios from "axios";
 import CheckMobileHook480 from "../../components/checkMobile";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import MyButton from "../../components/button";
 // import { changeDarkMode } from "../../store/action";
 
 export default function LandingPage() {
@@ -120,11 +121,10 @@ export default function LandingPage() {
     //     ))}
     //   </div>
     // </div>
-    <div className={`${darkMode ? "bg-slate-800 text-white" : ""}`}>
+    <div className={`pt-[50px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
       {/* 1st */}
-
       <div
-        className={`w-full mt-[50px] py-[40px] md:py-[50px] ${
+        className={`w-full  py-[40px] md:py-[50px] ${
           darkMode ? "bg-slate-700 " : "bg-[#EEEEEE]"
         }  flex items-center justify-center`}
       >
@@ -145,15 +145,26 @@ export default function LandingPage() {
               Stickers are components and pre-defined elements you can quickly
               copy and start using in your designs. Stickers.
             </p>
-            <button
+            {/* <button
               className={` ${
                 darkMode
-                  ? "bg-slate-800 text-white "
+                  ? "bg-red-600 shadow-none text-white "
                   : "text-white bg-[#333333]"
-              }  px-6 py-2  my-4 rounded-md cursor-pointer`}
+              }  px-6 py-2 rounded-md my-4 cursor-pointer
+              outline-none border-transparent focus:border-transparent focus:ring-0`}
             >
               Register Now
-            </button>
+            </button> */}
+            <div className="my-4">
+              <MyButton
+                type=""
+                text="Register Now"
+                mdh="h-[35px]"
+                mdw="w-[120px]"
+                bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                textColor="text-white"
+              />
+            </div>
           </div>
           <div
             className={`w-[50%] bg-[#EEEEEE] flex items-center justify-center`}
@@ -183,7 +194,7 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Scan:
+                Scan:{" "}
               </span>
               Snap the QR code, unlock rewards.
             </p>
@@ -197,7 +208,7 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Earn:
+                Earn:{" "}
               </span>
               Watch your points pile up with every scan.
             </p>
@@ -211,7 +222,7 @@ export default function LandingPage() {
                   darkMode ? "text-slate-600" : "text-[#333333]"
                 }`}
               >
-                Redeem:
+                Redeem:{" "}
               </span>
               Turn points into exciting rewards!
             </p>
@@ -270,7 +281,7 @@ export default function LandingPage() {
       {mobile ? (
         //for mobile
         <div className="w-full flex flex-col items-center justify-center gap-y-4">
-          <div className="w-[90%]  ml-[5%] mt-[120px] gap-4 grid grid-cols-2">
+          <div className="w-[90%]  mt-[120px] gap-4 grid grid-cols-2">
             {rewardData.slice(0, 2).map((reward) => (
               <div
                 key={reward.id}
@@ -286,9 +297,17 @@ export default function LandingPage() {
                 <p className="m-0 p-0 w-full text-base font-medium">
                   {reward.points}
                 </p>
-                <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md">
+                {/* <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md">
                   Redeem
-                </button>
+                </button> */}
+                <MyButton
+                  text="Redeem"
+                  type="submit"
+                  mdh="h-[35px]"
+                  mdw="w-full"
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  textColor="text-white"
+                />
               </div>
             ))}
           </div>
@@ -320,9 +339,17 @@ export default function LandingPage() {
                 <p className="m-0 p-0 w-full text-base font-medium">
                   {reward.points}
                 </p>
-                <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md cursor-pointer">
+                {/* <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md cursor-pointer">
                   Redeem
-                </button>
+                </button> */}
+                <MyButton
+                  text="Redeem"
+                  type="submit"
+                  mdh="h-[35px]"
+                  mdw="w-full"
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  textColor="text-white"
+                />
               </div>
             ))}
           </div>
@@ -441,17 +468,21 @@ export default function LandingPage() {
                 onClick={() => setToggleMobile(true)}
                 className={`w-[50%] ${
                   toggleMobile
-                    ? "bg-[#333333] text-white"
+                    ? darkMode
+                      ? "bg-red-500 text-white"
+                      : "bg-[#333333] text-white"
                     : "text-[#333333] bg-[#DEDEDE]"
-                }  h-full flex items-center justify-center`}
+                } h-full flex items-center justify-center`}
               >
-                <p> iOS (Safari)</p>
+                <p>iOS (Safari)</p>
               </div>
               <div
                 onClick={() => setToggleMobile(false)}
                 className={`w-[50%]  ${
                   toggleMobile
                     ? "text-[#333333] bg-[#DEDEDE]"
+                    : darkMode
+                    ? "bg-red-500 text-white"
                     : "bg-[#333333] text-white"
                 } h-full flex items-center justify-center`}
               >
@@ -472,7 +503,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 1.
+                        Step 1.{" "}
                       </span>
                       Open Safari and navigate to our Loyalty Rewards Web App.
                     </p>
@@ -486,7 +517,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 2.
+                        Step 2.{" "}
                       </span>
                       Tap the "Share" icon at the bottom of the screen.
                     </p>
@@ -500,7 +531,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 3.
+                        Step 3.{" "}
                       </span>
                       Select "Add to Home Screen."
                     </p>
@@ -514,7 +545,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 4.
+                        Step 4.{" "}
                       </span>
                       Customize the app's name (if desired) and tap "Add."
                     </p>
@@ -540,7 +571,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 1.
+                        Step 1.{" "}
                       </span>
                       Open Chrome and visit our Loyalty Rewards Web App
                     </p>
@@ -554,7 +585,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 2.
+                        Step 2.{" "}
                       </span>
                       Tap the three-dot menu at the top-right corner.
                     </p>
@@ -568,7 +599,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 3.
+                        Step 3.{" "}
                       </span>
                       Choose "Add to Home screen."
                     </p>
@@ -582,7 +613,7 @@ export default function LandingPage() {
                           darkMode ? "text-slate-600" : "text-[#333333]"
                         }`}
                       >
-                        Step 4.
+                        Step 4.{" "}
                       </span>
                       Confirm by tapping "Add."
                     </p>
@@ -617,7 +648,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 1.
+                    Step 1.{" "}
                   </span>
                   Open Safari and navigate to our Loyalty Rewards Web App.
                 </p>
@@ -631,7 +662,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 2.
+                    Step 2.{" "}
                   </span>
                   Tap the "Share" icon at the bottom of the screen.
                 </p>
@@ -645,7 +676,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 3.
+                    Step 3.{" "}
                   </span>
                   Select "Add to Home Screen."
                 </p>
@@ -659,7 +690,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 4.
+                    Step 4.{" "}
                   </span>
                   Customize the app's name (if desired) and tap "Add."
                 </p>
@@ -696,7 +727,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 1.
+                    Step 1.{" "}
                   </span>
                   Open Chrome and visit our Loyalty Rewards Web App
                 </p>
@@ -710,7 +741,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 2.
+                    Step 2.{" "}
                   </span>
                   Tap the three-dot menu at the top-right corner.
                 </p>
@@ -724,7 +755,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 3.
+                    Step 3.{" "}
                   </span>
                   Choose "Add to Home screen."
                 </p>
@@ -738,7 +769,7 @@ export default function LandingPage() {
                       darkMode ? "text-slate-600" : "text-[#333333]"
                     }`}
                   >
-                    Step 4.
+                    Step 4.{" "}
                   </span>
                   Confirm by tapping "Add."
                 </p>

@@ -10,14 +10,16 @@ export default function DesktopHeader() {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-[greeen] h-[60px] flex justify-between">
+    <div className={`${
+      darkMode ? "bg-slate-700 text-white" : ""
+    } bg-[greeen] h-[60px] flex justify-between`}>
       <div className="flex justify-center items-center w-1/5 bg-[cyaan]">
         <img src="/logo.png" className="w-[80px] h-[20px]" />
       </div>
       <div className="w-1/2 bg-[greeen] flex items-center">
         <ul className="flex justify-evenly w-full list-none p-0">
           <li className="cursor-pointer">
-            <Link to="/" className="no-underline text-black">
+            <Link to="/" className={`no-underline ${darkMode ? "text-white" :"text-black"}`}>
               Home
             </Link>
           </li>
@@ -59,7 +61,8 @@ export default function DesktopHeader() {
             text="Login"
             mdh="h-[30px]"
             mdw="w-[80px]"
-            bgColor="bg-[#23262d]"
+            bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+            // bgColor="bg-[#23262d]"
             textColor="text-white"
           />
         </Link>
@@ -69,7 +72,8 @@ export default function DesktopHeader() {
               text="Admin Login"
               mdh="h-[30px]"
               mdw="w-[120px]"
-              bgColor="bg-[#23262d]"
+              bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+              // bgColor="bg-[#23262d]"
               textColor="text-white"
             />
           </Link>
