@@ -10,7 +10,7 @@ export default function WebFooter() {
         darkMode ? "bg-slate-700" : "bg-[#383434]"
       } flex justify-center items-center`}
     >
-      <div className="w-[80%] ml-[10%] md:ml-0  flex flex-col md:flex-row items-center justify-center ">
+      <div className="w-[80%] md:ml-0  flex flex-col md:flex-row items-center justify-center ">
         <div className="w-[90%] md:w-[40%] h-[300px]  flex items-center justify-center">
           <img
             src="/sookee-thumbs-up.png"

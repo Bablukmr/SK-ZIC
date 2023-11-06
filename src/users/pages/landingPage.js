@@ -97,10 +97,10 @@ export default function LandingPage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let abc = currentImageIndex + (1 % brandingImg.length);
-      console.log("a", abc);
-      console.log("b", brandingImg.length);
-      console.log("c", currentImageIndex + 1);
+      // let abc = currentImageIndex + (1 % brandingImg.length);
+      // console.log("a", abc);
+      // console.log("b", brandingImg.length);
+      // console.log("c", currentImageIndex + 1);
       // setCurrentImageIndex(currentImageIndex + 1);
       if (currentImageIndex + 1 === brandingImg.length - 2) {
         setCurrentImageIndex(0);
