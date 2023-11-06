@@ -46,7 +46,9 @@ export default function MobileHeader(props) {
         </div>
 
         <div className="w-1/2 bg-[greeen] flex items-center justify-center">
-          <img src="/logo.png" className="w-[80px] h-[20px]" />
+          <Link to="/app">
+            <img src="/logo.png" className="w-[80px] h-[20px]" />
+          </Link>
         </div>
 
         <div className="flex justify-center items-center w-1/5 bg-[ccyan]">

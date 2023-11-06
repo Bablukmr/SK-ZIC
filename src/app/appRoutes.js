@@ -5,6 +5,8 @@ import NotFound from "../components/notFound";
 import AppDashboard from "./pages/appDashboard";
 import Webchat from "./pages/webchat";
 import Promotions from "./pages/promotions";
+import Profile from "./pages/profile";
+import PointHistory from "./pages/pointHistory";
 
 export default function AppRoutes() {
   return (
@@ -14,6 +16,8 @@ export default function AppRoutes() {
       <Route path="qr-detail" element={<QrDetail />} />
       <Route path="chat" element={<Webchat />} />
       <Route path="promotions" element={<Promotions />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="point-history" element={<PointHistory />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
