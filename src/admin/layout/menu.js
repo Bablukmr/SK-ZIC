@@ -21,6 +21,8 @@ export default function AdminMenu(props) {
     { id: 12, value: "Update Expired QR", link: "/admin/update-expired-qr" },
     { id: 13, value: "Update Unused QR", link: "/admin/update-unused-qr" },
 
+    { id: 14, value: "upload-qr", link: "/admin/upload-qr" },
+
     { id: 6, value: "View Analytics", link: "#" },
     { id: 7, value: "Live Chat With Users", link: "/admin/admin-chat" },
     { id: 9, value: "QR XLSX Download ", link: "/admin/download-qr" },

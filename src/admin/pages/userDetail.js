@@ -39,7 +39,7 @@ export default function UserDetail() {
         });
 
       axios
-        .get(`https://api-dev.skzicph.com/users/user-id/?id=${id}`, {
+        .get(`https://api-dev.skzicph.com/users/user-id?id=${id}`, {
           headers: {
             Authorization: `Token ${token}`,
           },

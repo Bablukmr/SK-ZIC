@@ -153,6 +153,7 @@ export const userLogIn = (email, password) => {
       .catch((e) => {
         try {
           let d = e?.response?.data;
+          console.log("ddddd", d);
           if (d) {
             if (d.non_field_errors && d.non_field_errors[0]) {
               if (d.non_field_errors[0] === "E-mail is not verified.") {

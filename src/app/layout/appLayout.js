@@ -18,6 +18,7 @@ import axios from "axios";
 import WebSocketInstance from "../../chat/websocket";
 import CheckMobileHook480 from "../../components/checkMobile";
 import MobileFooter from "./mobileFooter";
+import DesktopHeader from "./desktopHeader";
 
 export default function AppLayout() {
   const navigate = useNavigate();
@@ -89,36 +90,35 @@ export default function AppLayout() {
     dispatch(newMessage(message));
   };
 
-  // useEffect(() => {
-  //   if (!token) {
-  //     const tokenn = localStorage.getItem("token");
-  //     if (tokenn) {
-  //       dispatch(userLogin(tokenn));
-  //       dispatch(getUserData(tokenn));
-  //       const id = searchParams.get("id");
-  //       let route;
-  //       if (id) {
-  //         route = location?.pathname + "?id=" + id;
-  //       } else {
-  //         route = location?.pathname;
-  //       }
-  //       dispatch(UrlTo(route));
-  //     } else {
-  //       navigate("/signin");
-  //       window.location.reload();
-  //     }
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (!token) {
+      const tokenn = localStorage.getItem("token");
+      if (tokenn) {
+        dispatch(userLogin(tokenn));
+        dispatch(getUserData(tokenn));
+        const id = searchParams.get("id");
+        let route;
+        if (id) {
+          route = location?.pathname + "?id=" + id;
+        } else {
+          route = location?.pathname;
+        }
+        dispatch(UrlTo(route));
+      } else {
+        navigate("/signin");
+        window.location.reload();
+      }
+    }
+  }, [token]);
 
-  // return !token ? (
-  //   <div className="flex items-center h-screen">
-  //     <LoadingAni />
-  //   </div>
-  // ) :
-  return (
+  return !token ? (
+    <div className="flex items-center h-screen">
+      <LoadingAni />
+    </div>
+  ) : (
     <div className="w-full">
       <div className="h-[60px]">
-       {mobile ? <AppHeader count={count} />: ""}
+       {mobile ? <AppHeader count={count} />: <DesktopHeader/>}
       </div>
       <div
         className={`${

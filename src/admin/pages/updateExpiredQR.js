@@ -16,6 +16,10 @@ export default function UpdateExpiredQR() {
   const [startno, setStartno] = useState(null);
   const [endno, setEndno] = useState("");
 
+  const [newPoints, setNewPoints] = useState("");
+
+  console.log("newPoints", newPoints);
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (value) => {
@@ -49,6 +53,7 @@ export default function UpdateExpiredQR() {
           {
             name: name,
             date: newValue.format("YYYY-MM-DD"),
+            point: newPoints,
           },
           {
             headers: {
@@ -62,6 +67,7 @@ export default function UpdateExpiredQR() {
           setNewValue(null);
           setName("");
           setStartno(null);
+          setNewPoints("")
           setEndno("");
 
           notification["success"]({
@@ -140,6 +146,7 @@ export default function UpdateExpiredQR() {
             start: startno,
             end: endno,
             date: newValue.format("YYYY-MM-DD"),
+            point: newPoints,
           },
           {
             headers: {
@@ -154,6 +161,7 @@ export default function UpdateExpiredQR() {
           setName("");
           setStartno(null);
           setEndno("");
+          setNewPoints("")
 
           notification["success"]({
             message: "Success !!",
@@ -263,6 +271,19 @@ export default function UpdateExpiredQR() {
             className="w-[200px] ml-10"
             // className="w-[100%]"
             disabledDate={disabledDate}
+          />
+        </div>
+
+        <div className="flex mt-2  w-full md:w-3/5 items-center">
+          <p className="w-[180px]">New Points</p>
+          <Input
+            onChange={(e) => {
+              setNewPoints(e.target.value);
+            }}
+            value={newPoints}
+            placement="topRight"
+            className="w-[200px] ml-10"
+            // disabledDate={disabledDate}
           />
         </div>
 

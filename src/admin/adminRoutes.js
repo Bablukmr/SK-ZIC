@@ -12,6 +12,7 @@ import UnverifiedUserDetail from "./pages/unverifiedUserDetail";
 import UpdateExpiredQR from "./pages/updateExpiredQR";
 import UpdateUnusedQr from "./pages/updateUnusedQr";
 import ManagePromotions from "./pages/managePromotions";
+import UploadQR from "./pages/uploadQR";
 
 export default function AdminRoutes() {
   return (
@@ -28,6 +29,8 @@ export default function AdminRoutes() {
       <Route path="update-expired-qr" element={<UpdateExpiredQR />} />
       <Route path="update-unused-qr" element={<UpdateUnusedQr />} />
       <Route path="manage-promotions" element={<ManagePromotions />} />
+
+      <Route path="upload-qr" element={<UploadQR />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

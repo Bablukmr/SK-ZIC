@@ -3,7 +3,7 @@ export default function MobileFooter() {
   return (
     <div className="w-full h-[60px] fixed bottom-0 bg-[#f2f2f2] flex items-center justify-around ">
       <Link
-        to="/"
+        to="/app"
         className="no-underline text-[#333333] flex flex-col items-center justify-center text-sm"
       >
         <svg
@@ -23,7 +23,7 @@ export default function MobileFooter() {
         <small className="m-0 p-0 font-semibold">Home</small>
       </Link>
       <Link
-        to="/"
+        to="/app/promotions"
         className="no-underline text-[#333333] flex flex-col items-center justify-center text-sm"
       >
         <svg
@@ -44,11 +44,9 @@ export default function MobileFooter() {
       </Link>
 
       <Link
-        to="/"
+        to="/app/scan-qr"
         className="h-[50px] w-[50px] bg-[#bfbfbf] rounded-full  no-underline text-[#333333] flex flex-col items-center justify-center text-sm"
       >
-        {/* <div 
-      className="flex   items-center justify-center text-[#333333] text-sm cursor-pointer"> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -71,7 +69,7 @@ export default function MobileFooter() {
       </Link>
 
       <Link
-        to="/"
+        to="/app/point-history"
         className="no-underline text-[#333333] flex flex-col items-center justify-center text-sm"
       >
         <svg
@@ -92,7 +90,7 @@ export default function MobileFooter() {
       </Link>
 
       <Link
-        to="/"
+        to="/app/profile"
         className="no-underline text-[#333333] flex flex-col items-center justify-center text-sm"
       >
         <svg

@@ -5,6 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MyButton from "../../components/button";
 // import { changeDarkMode } from "../../store/action";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import "./styles.css";
+
+// import required modules
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+
+// import "./styles.css";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -244,7 +256,7 @@ export default function LandingPage() {
               >
                 <div className=" w-full h-[80px] rounded-md">
                   <img
-                    src="/2df2-crop.jpg"
+                    src="/black.png"
                     alt="img"
                     className="w-full h-full rounded-md"
                   />{" "}
@@ -284,7 +296,7 @@ export default function LandingPage() {
       ) : (
         // for desktop
         <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-[90%] mt-[120px] gap-4 grid grid-cols-4 ">
+          <div className="w-[90%] mt-[120px] gap-x-4 gap-y-8 grid grid-cols-4 ">
             {rewardData.map((reward) => (
               <div
                 key={reward.id}
@@ -292,7 +304,7 @@ export default function LandingPage() {
               >
                 <div className=" w-full md:h-[80px] lg:h-[100px] xl:h-[150px]  rounded-md">
                   <img
-                    src="/2df2-crop.jpg"
+                    src="/black.png"
                     alt="img"
                     className="w-full h-full rounded-md"
                   />
@@ -314,7 +326,8 @@ export default function LandingPage() {
                   type="submit"
                   mdh="h-[35px]"
                   mdw="w-full"
-                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  // bg-[#23262d]
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#40a9ff]"}`}
                   textColor="text-white"
                 />
               </div>
@@ -392,25 +405,35 @@ export default function LandingPage() {
             Stickers are components and pre-defined elements you...
           </p>
         </div>
-        <div className="w-[90%] md:w-[90%] lg:w-[70%] xl:w-[60%] grid items-center justify-center mt-[40px] md:mt-[50px] grid-cols-3 gap-6 ">
-          {brandingImg
-            .slice(currentImageIndex, currentImageIndex + 3)
-            .map((img, index) => (
-              <div
-                key={img.id}
-                className={`md:w-[200px] ${
-                  index === 1 ? "transform scale-125" : ""
-                }`}
-              >
-                {/* <h1>{img.id}</h1> */}
-                <img
-                  // onClick={() => setCurrentImageIndex(index)}
-                  src={img.url}
-                  alt="/"
-                  className="w-full h-full"
-                />
-              </div>
+        <div className="w-[70%] md:w-[90%] lg:w-[70%] xl:w-[60%]  mt-[40px] md:mt-[50px] ">
+          <Swiper
+            autoplay={{
+              delay: 500,
+              disableOnInteraction: false,
+            }}
+            slidesPerView={3}
+            effect={"coverflow"}
+            spaceBetween={mobile ? 20 : 50}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            loop={true}
+            modules={[Pagination, EffectCoverflow, Autoplay]}
+            className="mySwiper"
+          >
+            {brandingImg.map((a) => (
+              <SwiperSlide key={a.id}>
+                <img src={a.url} alt="/" className="" />
+              </SwiperSlide>
             ))}
+          </Swiper>
         </div>
       </div>
 
