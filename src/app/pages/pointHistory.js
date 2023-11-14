@@ -68,26 +68,30 @@ export default function PointHistory() {
 
       <div className=" bg-[#f0f0f0] px-4 py-6 rounded-lg mt-6 ">
         <ul className="list-none m-0 p-0">
-          {pointHistory.map((d) => (
-            <li className="py-3">
-              <div className="flex justify-between bg-[redd] w-full">
-                <div className="w-1/2">
-                  <p className="m-0 bg-[resd]">
-                    {/* {moment(d?.date).format("YYYY/MM/DD kk:mm:ss")} */}
-                    {moment(d?.date).format("YYYY - MM - DD")}
-                  </p>
+          {pointHistory.length === 0 ? (
+            <p>No Point history available.</p>
+          ) : (
+            pointHistory.map((d) => (
+              <li className="py-3">
+                <div className="flex justify-between bg-[redd] w-full">
+                  <div className="w-1/2">
+                    <p className="m-0 bg-[resd]">
+                      {/* {moment(d?.date).format("YYYY/MM/DD kk:mm:ss")} */}
+                      {moment(d?.date).format("YYYY - MM - DD")}
+                    </p>
+                  </div>
+                  <div className="flex w-1/2 justify-end">
+                    <p className="m-0 w-1/4  font-bold text-right">
+                      {d.direction === "in" ? "+" : "-"}
+                    </p>
+                    <p className="m-0 w-1/4 text-right font-semibold">
+                      {d.points}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex w-1/2 justify-end">
-                  <p className="m-0 w-1/4  font-bold text-right">
-                    {d.direction === "in" ? "+" : "-"}
-                  </p>
-                  <p className="m-0 w-1/4 text-right font-semibold">
-                    {d.points}
-                  </p>
-                </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </div>

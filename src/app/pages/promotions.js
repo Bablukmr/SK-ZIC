@@ -1,14 +1,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, InputNumber, notification } from "antd";
+import { Modal, InputNumber, notification, Typography } from "antd";
 import CheckMobileHook480 from "../../components/checkMobile";
 import MyButton from "../../components/button";
 import { useSelector } from "react-redux";
 
+const { Paragraph, Text } = Typography;
+const count = 4;
+
 export default function Promotions() {
   const token = useSelector((state) => state.AuthReducer.token);
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
 
-  const [promotionData, setPromotionData] = useState([]);
+  const [initLoading, setInitLoading] = useState(true);
+  // const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
+  const [next, setNext] = useState(true);
+
+  // const [promotionData, setPromotionData] = useState([]);
 
   const [showmodal, setShowModal] = useState(false);
 
@@ -29,15 +41,84 @@ export default function Promotions() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qr/promotion-list")
+      .get(`http://localhost:8000/qr/promotion-list?pageNumber=${currentPage}`)
       .then((d) => {
         console.log(d.data);
-        setPromotionData(d.data);
+        setInitLoading(false);
+        // setPromotionData(d.data?.results);
+        setData(d?.data?.results);
+        setList(d?.data?.results);
+
+        if (!d.data.next) {
+          setNext(false);
+        }
       })
       .catch((e) => {
+        setInitLoading(false);
         console.log(e.response);
       });
   }, []);
+
+  const onLoadMore = () => {
+    setLoading(true);
+    setList(
+      data.concat(
+        [...new Array(count)].map(() => ({
+          loading: true,
+          name: {},
+          picture: {},
+        }))
+      )
+    );
+
+    const cc = currentPage + 1;
+    axios
+      .get(`http://localhost:8000/qr/promotion-list?pageNumber=${cc}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((d) => {
+        if (!d.data.next) {
+          setNext(false);
+        }
+
+        setCurrentPage(currentPage + 1);
+        const newData = data.concat(d.data?.results);
+        setData(newData);
+        setList(newData);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+
+        notification["error"]({
+          message: "Error !!",
+          description: "Something went wrong, try again ",
+        });
+      });
+  };
+  const LoadMore = () =>
+    !initLoading && !loading ? (
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: 12,
+          height: 32,
+          lineHeight: "32px",
+        }}
+      >
+        <MyButton
+          onClick={onLoadMore}
+          type=""
+          text="load more"
+          mdh="h-[35px]"
+          mdw="w-[120px]"
+          bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+          textColor="text-white"
+        />
+      </div>
+    ) : null;
 
   const onClick = () => {
     if (quantity === 0) {
@@ -98,9 +179,12 @@ export default function Promotions() {
 
   return (
     <>
-      <div className="h-[calc(100vh-120px)] md:h-[calc(100vh-60px)] overflow-auto flex justify-center">
-        <div className="w-[90%] pt-10 gap-x-4 grid grid-cols-2 md:grid-cols-4">
-          {promotionData.map((reward) => (
+      <div
+        className="h-[calc(100vh-120px)] md:h-[calc(100vh-60px)] overflow-auto flex flex-col
+       items-center"
+      >
+        <div className="w-[90%] mt-4 pt-10 gap-x-4 grid grid-cols-2 md:grid-cols-4">
+          {list.map((reward) => (
             <div
               key={reward.id}
               className="px-2 pb-10 flex flex-col items-center justify-center gap-1
@@ -120,7 +204,7 @@ export default function Promotions() {
                   {reward.title}
                 </p>
                 <p className="w-full text-[#979797] text-xs m-0 p-0">
-                  {reward.des}
+                  <Paragraph ellipsis={true}>{reward.des}</Paragraph>
                 </p>
                 <p className="w-full text-base font-medium m-0 p-0">
                   {reward.redeem_points}
@@ -138,6 +222,7 @@ export default function Promotions() {
             </div>
           ))}
         </div>
+        {next ? <LoadMore /> : null}
       </div>
 
       <Modal
