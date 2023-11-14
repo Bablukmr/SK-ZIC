@@ -244,7 +244,7 @@ export default function LandingPage() {
               >
                 <div className=" w-full h-[80px] rounded-md">
                   <img
-                    src="/2df2-crop.jpg"
+                    src="/black.png"
                     alt="img"
                     className="w-full h-full rounded-md"
                   />{" "}
@@ -284,7 +284,7 @@ export default function LandingPage() {
       ) : (
         // for desktop
         <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-[90%] mt-[120px] gap-4 grid grid-cols-4 ">
+          <div className="w-[90%] mt-[120px] gap-x-4 gap-y-8 grid grid-cols-4 ">
             {rewardData.map((reward) => (
               <div
                 key={reward.id}
@@ -292,7 +292,7 @@ export default function LandingPage() {
               >
                 <div className=" w-full md:h-[80px] lg:h-[100px] xl:h-[150px]  rounded-md">
                   <img
-                    src="/2df2-crop.jpg"
+                    src="/black.png"
                     alt="img"
                     className="w-full h-full rounded-md"
                   />
@@ -314,7 +314,8 @@ export default function LandingPage() {
                   type="submit"
                   mdh="h-[35px]"
                   mdw="w-full"
-                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  // bg-[#23262d]
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#40a9ff]"}`}
                   textColor="text-white"
                 />
               </div>

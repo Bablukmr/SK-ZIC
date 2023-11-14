@@ -92,6 +92,12 @@ export default function QrDetail() {
               message: "Error !!",
               description: tt,
             });
+          } else {
+            let y = e.response?.data?.error;
+            notification["error"]({
+              message: "Error !!",
+              description: y,
+            });
           }
         }
         // if (e?.response?.data[0] === "error: this qr has been used") {

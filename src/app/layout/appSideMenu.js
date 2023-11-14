@@ -104,7 +104,7 @@ function AppSideMenu(props) {
         </ul>
       </section>
       <section
-        className="h-[60px] absolute bottom-[90px] md:bottom-4 w-full flex justify-center text-black 
+        className="h-[60px] absolute  bottom-[90px] md:bottom-2 w-full flex justify-center text-black 
                 items-center"
       >
         <button
