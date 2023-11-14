@@ -104,7 +104,7 @@ function SignUp3(props) {
     };
 
     axios
-      .post(`http://localhost:8000/users/registerUser/`, body, config)
+      .post(`https://api-dev.skzicph.com/users/registerUser/`, body, config)
       .then((res) => {
         setLoading(false);
       })
@@ -119,7 +119,7 @@ function SignUp3(props) {
       });
 
     // axios
-    //   .post("http://localhost:8000/users/registerUser/", {
+    //   .post("https://api-dev.skzicph.com/users/registerUser/", {
     //     username: ,
     //     password1: ,
     //     password2: ,

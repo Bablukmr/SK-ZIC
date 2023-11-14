@@ -20,7 +20,7 @@ export default function ForgetPasswordReset(props) {
     e.preventDefault();
     if (pass === confirmPass) {
       axios
-        .post("http://localhost:8000/dj-rest-auth/password/reset/confirm/", {
+        .post("https://api-dev.skzicph.com/dj-rest-auth/password/reset/confirm/", {
           uid: uid,
           token: token,
           new_password1: pass,

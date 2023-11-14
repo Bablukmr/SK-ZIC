@@ -102,7 +102,7 @@ function AdminChat() {
     setConnection(false);
 
     axios
-      .get(`http://localhost:8000/chat/chat-master?id=${value}`)
+      .get(`https://api-dev.skzicph.com/chat/chat-master?id=${value}`)
       .then((d) => {
         // console.log(d.data);
         setChatSessionId(d.data[0]?.id);
@@ -115,7 +115,7 @@ function AdminChat() {
   };
   const onSearch = (value) => {
     axios
-      .get(`http://localhost:8000/chat/users`)
+      .get(`https://api-dev.skzicph.com/chat/users`)
       .then((d) => {
         // console.log(d.data);
         setUsers(d.data);

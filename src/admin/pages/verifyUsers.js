@@ -43,7 +43,7 @@ export default function VerifyUsers() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/users/unverified?pageNumber=${currentPage}`, {
+      .get(`https://api-dev.skzicph.com/users/unverified?pageNumber=${currentPage}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -79,7 +79,7 @@ export default function VerifyUsers() {
 
     const cc = currentPage + 1;
     axios
-      .get(`http://localhost:8000/users/unverified?pageNumber=${cc}`, {
+      .get(`https://api-dev.skzicph.com/users/unverified?pageNumber=${cc}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -121,7 +121,7 @@ export default function VerifyUsers() {
   const onClick = (id) => {
     axios
       .put(
-        `http://localhost:8000/users/update-user/${id}`,
+        `https://api-dev.skzicph.com/users/update-user/${id}`,
         {
           is_active: true,
         },

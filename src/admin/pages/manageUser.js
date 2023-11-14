@@ -27,7 +27,7 @@ export default function ManageUsers() {
     setLoading(true);
     axios
       .get(
-        `http://localhost:8000/users/user-username/?username=${debouncedValue}`,
+        `https://api-dev.skzicph.com/users/user-username/?username=${debouncedValue}`,
         {
           headers: {
             Authorization: `Token ${token}`,

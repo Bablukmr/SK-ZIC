@@ -41,7 +41,7 @@ export default function UpdateUnusedQr() {
       setLoading(true);
       axios
         .post(
-          "http://localhost:8000/qr/update-points-qr",
+          "https://api-dev.skzicph.com/qr/update-points-qr",
           {
             name: name,
             point: newValue,
@@ -129,7 +129,7 @@ export default function UpdateUnusedQr() {
 
       axios
         .post(
-          "http://localhost:8000/qr/update-points-qr",
+          "https://api-dev.skzicph.com/qr/update-points-qr",
           {
             start: startno,
             end: endno,

@@ -18,7 +18,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qr/promotion-list")
+      .get("https://api-dev.skzicph.com/qr/promotion-list")
       .then((d) => {
         // console.log(d.data);
         setPromotionData(d.data);

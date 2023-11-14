@@ -43,7 +43,7 @@ const ExpiredQr = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/qr/expired-qr?pageNumber=${currentPage}`, {
+      .get(`https://api-dev.skzicph.com/qr/expired-qr?pageNumber=${currentPage}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -79,7 +79,7 @@ const ExpiredQr = () => {
 
     const cc = currentPage + 1;
     axios
-      .get(`http://localhost:8000/qr/expired-qr?pageNumber=${cc}`, {
+      .get(`https://api-dev.skzicph.com/qr/expired-qr?pageNumber=${cc}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -119,7 +119,7 @@ const ExpiredQr = () => {
   const UpdateQr = () => {
     axios
       .put(
-        `http://localhost:8000/qr/create/${selectedQR}/`,
+        `https://api-dev.skzicph.com/qr/create/${selectedQR}/`,
         {
           expiry: newValue.format("YYYY-MM-DD"),
         },

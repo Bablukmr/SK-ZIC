@@ -22,7 +22,7 @@ export default function DownloadQr() {
         return;
       } else {
         window.open(
-          `http://localhost:8000/qr/download-qr?name=${name}`,
+          `https://api-dev.skzicph.com/qr/download-qr?name=${name}`,
           "_blank"
         );
       }
@@ -68,7 +68,7 @@ export default function DownloadQr() {
       }
 
       window.open(
-        `http://localhost:8000/qr/download-qr-by-serial?start=${startno}&&end=${endno}`,
+        `https://api-dev.skzicph.com/qr/download-qr-by-serial?start=${startno}&&end=${endno}`,
         "_blank"
       );
     }

@@ -37,7 +37,7 @@ export default function GenerateQrModal(props) {
   function downloadQr() {
     // zip.remove("images-qr");
     setShowModal(false);
-    window.open(`http://localhost:8000/qr/download-qr?name=${name}`, "_blank");
+    window.open(`https://api-dev.skzicph.com/qr/download-qr?name=${name}`, "_blank");
 
     // const abc = [];
     // returnedData.forEach((d, i) => {

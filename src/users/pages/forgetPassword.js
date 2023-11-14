@@ -14,7 +14,7 @@ export default function ForgetPassword() {
 
     if (regexEmail.test(email)) {
       axios
-        .post("http://localhost:8000/dj-rest-auth/password/reset/", {
+        .post("https://api-dev.skzicph.com/dj-rest-auth/password/reset/", {
           email: email,
         })
         .then(() => {

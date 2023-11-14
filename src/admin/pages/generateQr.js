@@ -89,7 +89,7 @@ export default function GenerateQr() {
 
     axios
       .post(
-        "http://localhost:8000/qr/create/",
+        "https://api-dev.skzicph.com/qr/create/",
         {
           name: values.name,
           points: values.points,

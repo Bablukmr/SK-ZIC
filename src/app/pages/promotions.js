@@ -30,7 +30,7 @@ export default function Promotions() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qr/promotion-list")
+      .get("https://api-dev.skzicph.com/qr/promotion-list")
       .then((d) => {
         console.log(d.data);
         setPromotionData(d.data);
@@ -52,7 +52,7 @@ export default function Promotions() {
     setLoading(true);
     axios
       .post(
-        "http://localhost:8000/qr/user-promotions/",
+        "https://api-dev.skzicph.com/qr/user-promotions/",
         {
           promotion: selectedPromotions,
           quantity: quantity,

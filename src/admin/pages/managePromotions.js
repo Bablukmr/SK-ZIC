@@ -32,7 +32,7 @@ export default function ManagePromotions() {
     setLoading(true);
     axios
       .post(
-        "http://localhost:8000/qr/promotions/",
+        "https://api-dev.skzicph.com/qr/promotions/",
         {
           title: values.title,
           des: values.description,

@@ -45,7 +45,7 @@ export default function UpdateExpiredQR() {
       setLoading(true);
       axios
         .post(
-          "http://localhost:8000/qr/update-expired-qr",
+          "https://api-dev.skzicph.com/qr/update-expired-qr",
           {
             name: name,
             date: newValue.format("YYYY-MM-DD"),
@@ -135,7 +135,7 @@ export default function UpdateExpiredQR() {
 
       axios
         .post(
-          "http://localhost:8000/qr/update-expired-qr",
+          "https://api-dev.skzicph.com/qr/update-expired-qr",
           {
             start: startno,
             end: endno,

@@ -21,7 +21,7 @@ export default function UserDetail() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:8000/qr/user-point?id=${id}`, {
+        .get(`https://api-dev.skzicph.com/qr/user-point?id=${id}`, {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -39,7 +39,7 @@ export default function UserDetail() {
         });
 
       axios
-        .get(`http://localhost:8000/users/user-id/?id=${id}`, {
+        .get(`https://api-dev.skzicph.com/users/user-id/?id=${id}`, {
           headers: {
             Authorization: `Token ${token}`,
           },

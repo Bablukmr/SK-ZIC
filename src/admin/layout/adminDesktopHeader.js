@@ -78,7 +78,7 @@ export default function AdminDesktopHeader() {
       setLoadingg(true);
       axios
         .post(
-          "http://localhost:8000/dj-rest-auth/password/change/",
+          "https://api-dev.skzicph.com/dj-rest-auth/password/change/",
           {
             old_password: values.current,
             new_password1: values.password,

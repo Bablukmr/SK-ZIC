@@ -17,7 +17,7 @@ function UnverifiedUserDetail() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:8000/users/user-id?id=${id}`, {
+        .get(`https://api-dev.skzicph.com/users/user-id?id=${id}`, {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -33,7 +33,7 @@ function UnverifiedUserDetail() {
   const onClick = () => {
     axios
       .put(
-        `http://localhost:8000/users/update-user/${id}`,
+        `https://api-dev.skzicph.com/users/update-user/${id}`,
         {
           is_active: true,
         },

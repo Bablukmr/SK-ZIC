@@ -14,7 +14,7 @@ export default function VerifyEmail() {
       // setLoading(true);
 
       axios
-        .post("http://localhost:8000/verify-email/", {
+        .post("https://api-dev.skzicph.com/verify-email/", {
           key,
         })
         .then((d) => {

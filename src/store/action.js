@@ -74,7 +74,7 @@ export const userData = (userData) => {
 export const userLogout = (token) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:8000/users/logout/", {
+      .post("https://api-dev.skzicph.com/users/logout/", {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -134,7 +134,7 @@ export const userLogIn = (email, password) => {
       },
     });
     axios
-      .post("http://localhost:8000/dj-rest-auth/login/", {
+      .post("https://api-dev.skzicph.com/dj-rest-auth/login/", {
         email: email,
         password: password,
       })
@@ -198,8 +198,8 @@ export const userLogIn = (email, password) => {
 export const getUserData = (token) => {
   return (dispatch) => {
     axios
-      // .get("http://localhost:8000/dj-rest-auth/user/", {
-      .get("http://localhost:8000/users/loggedInUser/", {
+      // .get("https://api-dev.skzicph.com/dj-rest-auth/user/", {
+      .get("https://api-dev.skzicph.com/users/loggedInUser/", {
         headers: {
           Authorization: `Token ${token}`,
         },

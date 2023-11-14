@@ -78,7 +78,7 @@ export default function AdminMenu(props) {
                     setSelected(d.id);
                     if (d.id === 8) {
                       window.open(
-                        "http://localhost:8000/qr/generate-csv",
+                        "https://api-dev.skzicph.com/qr/generate-csv",
                         "_blank"
                       );
                     }

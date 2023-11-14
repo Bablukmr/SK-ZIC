@@ -38,7 +38,7 @@ export default function AppLayout() {
   useEffect(() => {
     if (userData?.pk) {
       axios
-        .get(`http://localhost:8000/chat/chat-master?id=${userData?.pk}`)
+        .get(`https://api-dev.skzicph.com/chat/chat-master?id=${userData?.pk}`)
         .then((d) => {
           //   setChatSessionId(d.data[0]?.id);
           dispatch(chatSession(d.data[0]?.id));
@@ -118,7 +118,7 @@ export default function AppLayout() {
   return (
     <div className="w-full">
       <div className="h-[60px]">
-        <AppHeader count={count} />
+       {mobile ? <AppHeader count={count} />: ""}
       </div>
       <div
         className={`${

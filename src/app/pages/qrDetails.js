@@ -68,7 +68,7 @@ export default function QrDetail() {
     const saveData = (session, latitude, longitude, name, state, country) => {
         console.log("abc");
 
-        axios.post("http://localhost:8000/qr/scan/",
+        axios.post("https://api-dev.skzicph.com/qr/scan/",
             {
                 id: session,
                 longitude: longitude,
