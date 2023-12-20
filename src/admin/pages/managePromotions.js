@@ -9,12 +9,14 @@ import {
   Upload,
   Modal,
   message,
+  DatePicker,
+  InputNumber,
 } from "antd";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { PlusOutlined } from "@ant-design/icons";
-
+import moment from "moment";
 const { TextArea } = Input;
 
 export default function ManagePromotions() {
@@ -100,6 +102,8 @@ export default function ManagePromotions() {
     data.append("redeem_points", values.points);
     data.append("user_limit", values.user_limit);
     data.append("promotion_limit", values.promotion_limit);
+    data.append("start", values.start.format("YYYY-MM-DD"));
+    data.append("expiry", values.expiry.format("YYYY-MM-DD"));
 
     axios({
       url: "https://api-dev.skzicph.com/qr/promotions/",
@@ -110,6 +114,7 @@ export default function ManagePromotions() {
         // Accept: "application/json",
       },
     })
+<<<<<<< HEAD
       // axios
       //   .post(
       //     "https://api-dev.skzicph.com/qr/promotions/",
@@ -126,6 +131,8 @@ export default function ManagePromotions() {
       //       },
       //     }
       //   )
+=======
+>>>>>>> origin/main
       .then((d) => {
         setLoading(false);
         form.resetFields();
@@ -144,18 +151,14 @@ export default function ManagePromotions() {
       });
   };
 
+  function disabledDate(current) {
+    return moment().add(-1, "days") >= current;
+  }
   return (
     <>
       <div className="w-full bg-[reed]">
         <div className="flex bg-[redd] justify-between w-full md:w-3/5 items-center">
           <h2>Manage Promotions</h2>
-          {/* <MyButton
-          text="List"
-          mdh="h-[35px]"
-          mdw="w-[80px]"
-          bgColor="bg-[#23262d]"
-          textColor="text-white"
-        /> */}
         </div>
         <div>
           <Form
@@ -216,13 +219,7 @@ export default function ManagePromotions() {
                   </Form.Item>
                 </Card>
               </Col>
-              <Col
-                xs={{ span: 24 }}
-                // sm={{ span: 24 }}
-                md={{ span: 12 }}
-                // lg={{ span: 12 }}
-                // xl={{ span: 12 }}
-              >
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <Card loading={loading}>
                   <br />
                   <Form.Item
@@ -235,7 +232,12 @@ export default function ManagePromotions() {
                       },
                     ]}
                   >
-                    <Input placeholder="Redeem Points " />
+                    <InputNumber
+                      precision={0}
+                      controls={false}
+                      placeholder="Redeem Points "
+                      className="w-full"
+                    />
                   </Form.Item>
 
                   <Form.Item
@@ -248,7 +250,12 @@ export default function ManagePromotions() {
                       },
                     ]}
                   >
-                    <Input placeholder="Promotion Limit" />
+                    <InputNumber
+                      precision={0}
+                      controls={false}
+                      placeholder="Promotion Limit"
+                      className="w-full"
+                    />
                   </Form.Item>
 
                   <Form.Item
@@ -261,7 +268,44 @@ export default function ManagePromotions() {
                       },
                     ]}
                   >
-                    <Input placeholder="User Limit" />
+                    <InputNumber
+                      precision={0}
+                      controls={false}
+                      placeholder="User Limit"
+                      className="w-full"
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    label="Start Date"
+                    name="start"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select start date",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      placeholder="start date"
+                      className="w-[100%]"
+                      disabledDate={disabledDate}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    label="Expiry Date"
+                    name="expiry"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select expiry date",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      placeholder="expiry date"
+                      className="w-[100%]"
+                      disabledDate={disabledDate}
+                    />
                   </Form.Item>
                 </Card>
               </Col>

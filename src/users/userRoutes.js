@@ -7,10 +7,16 @@ import VerifyEmail from "./pages/verifyEmail";
 import ForgetPassword from "./pages/forgetPassword";
 import ForgetPasswordReset from "./pages/forgetPasswordReset";
 
-export default function UserRoutes() {
+export default function UserRoutes(props) {
+  console.log("ee", props);
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/"
+        element={
+          <LandingPage reff={props?.reff} brandingref={props.brandingref} />
+        }
+      />
       <Route path="signin" element={<UserSignIn />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="verify-email/:key" element={<VerifyEmail />} />

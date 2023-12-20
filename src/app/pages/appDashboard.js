@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
-import { Modal, InputNumber, notification } from "antd";
+import { Modal, InputNumber, notification, Typography, Spin } from "antd";
 import MyButton from "../../components/button";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import CheckMobileHook480 from "../../components/checkMobile";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getUserPoint } from "../../store/action";
+const { Paragraph, Text } = Typography;
 
 export default function AppDashboard() {
   const token = useSelector((state) => state.AuthReducer.token);
 
   const userId = useSelector((state) => state?.AuthReducer?.userData?.id);
 
-  console.log(userId);
+  const point = useSelector((state) => state?.AuthReducer?.point);
 
-  const [point, setPoint] = useState(null);
+  console.log(userId);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // const [point, setPoint] = useState(null);
   const [promotionData, setPromotionData] = useState([]);
   const [selectedPromotions, setSelectedPromotions] = useState(null);
   const [showmodal, setShowModal] = useState(false);
@@ -22,9 +29,34 @@ export default function AppDashboard() {
   const isMobile = CheckMobileHook480();
   const [loading, setLoading] = useState(false);
 
+  const [showmodall, setShowModall] = useState(false);
+  const [loadingDetail, setLoadingDetail] = useState(false);
+  const [detailData, setDetailData] = useState(null);
+
+  const darkMode = useSelector((state) => state.AuthReducer.darkMode);
+
   const hideModal = () => {
     setShowModal(false);
     // setSaved(false);
+  };
+  const hideModall = () => {
+    setShowModall(false);
+  };
+
+  const showdetail = (id) => {
+    setShowModall(true);
+    setLoadingDetail(true);
+
+    axios
+      .get(`http://localhost:8000/qr/promotion?id=${id}`)
+      .then((d) => {
+        setLoadingDetail(false);
+        setDetailData(d.data && Array.isArray(d.data) && d.data[0]);
+      })
+      .catch((e) => {
+        setLoadingDetail(false);
+        console.log(e.response);
+      });
   };
 
   const onClick = () => {
@@ -59,6 +91,7 @@ export default function AppDashboard() {
           message: "Success !!",
           description: "Promotion redeemed",
         });
+        dispatch(getUserPoint(token, userId));
       })
       .catch((e) => {
         if (e?.response) {
@@ -85,6 +118,7 @@ export default function AppDashboard() {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     if (userId) {
       axios
         .get(`https://api-dev.skzicph.com/qr/user-point?id=${userId}`, {
@@ -102,8 +136,28 @@ export default function AppDashboard() {
             description: "Something went wrong fetching user point.",
           });
         });
+=======
+    if (userId && token) {
+      dispatch(getUserPoint(token, userId));
+      // axios
+      //   .get(`http://localhost:8000/qr/user-point?id=${userId}`, {
+      //     headers: {
+      //       Authorization: `Token ${token}`,
+      //     },
+      //   })
+      //   .then((d) => {
+      //     setPoint(d.data && Array.isArray(d.data) && d.data[0]);
+      //     console.log(d.data);
+      //   })
+      //   .catch((e) => {
+      //     notification["error"]({
+      //       message: "Error !!",
+      //       description: "Something went wrong fetching user point.",
+      //     });
+      //   });
+>>>>>>> origin/main
     }
-  }, [userId]);
+  }, [userId, token]);
 
   useEffect(() => {
     if (token) {
@@ -111,7 +165,7 @@ export default function AppDashboard() {
         .get("https://api-dev.skzicph.com/qr/promotion-list")
         .then((d) => {
           console.log(d.data);
-          setPromotionData(d.data);
+          setPromotionData(d.data?.results);
         })
         .catch((e) => {
           console.log(e.response);
@@ -147,15 +201,19 @@ export default function AppDashboard() {
           </div>
         </Link>
 
+<<<<<<< HEAD
         <div className="w-[96%] ml-[2%] md:w-[90%] md:ml-[5%] lg:w-[80%] lg:ml-[10%] xl:w-[70%] xl:ml-[15%]  flex flex-col justify-center">
+=======
+        <div className="w-[96%] mt-8  ml-[2%] md:w-[90%] md:ml-[5%] lg:w-[80%] lg:ml-[10%] xl:w-[70%] xl:ml-[15%]  flex flex-col justify-center">
+>>>>>>> origin/main
           <p className="text-center font-bold">Rewards</p>
 
-          <div className=" pt-2 gap-x-4 grid grid-cols-2 md:grid-cols-4">
+          <div className="mt-6 pt-2 gap-x-4 grid grid-cols-2 md:grid-cols-4">
             {promotionData.map((reward) => (
               <div
                 key={reward.id}
                 className="px-2 pb-10 flex flex-col items-center justify-center gap-1
-               rounded-md"
+             rounded-md"
               >
                 <div className="w-full h-[120px] rounded-t-md">
                   <img
@@ -172,13 +230,28 @@ export default function AppDashboard() {
                     {reward.title}
                   </p>
                   <p className="w-full text-[#979797] text-xs m-0 p-0">
-                    {reward.des}
+                    <Paragraph ellipsis={true}>{reward.des}</Paragraph>
                   </p>
                   <p className="w-full text-base font-medium m-0 p-0">
                     {reward.redeem_points}
                   </p>
                 </div>
-                <button
+                <MyButton
+                  text="Reedem"
+                  onClick={() => {
+                    showdetail(reward.id);
+                    setSelectedPromotions(reward.id);
+                    // setShowModal(true);
+                  }}
+                  type="submit"
+                  mdh="h-[35px]"
+                  mdw="w-full"
+                  // bg-[#23262d]
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#40a9ff]"}`}
+                  textColor="text-white"
+                />
+
+                {/* <button
                   onClick={() => {
                     setSelectedPromotions(reward.id);
                     setShowModal(true);
@@ -186,9 +259,23 @@ export default function AppDashboard() {
                   className=" w-full bg-[#23262d] text-white py-2 cursor-pointer rounded-md"
                 >
                   Redeem
-                </button>
+                </button> */}
               </div>
             ))}
+          </div>
+          <div className="w-full flex justify-center">
+            <div className="pb-4 mt-8">
+              <MyButton
+                text="View All"
+                mdh="h-[35px]"
+                mdw="w-[120px]"
+                bgColor="bg-[#23262d]"
+                textColor="text-white"
+                onClick={() => {
+                  navigate("/app/promotions");
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -242,6 +329,59 @@ export default function AppDashboard() {
             </div>
           )}
         </div>
+      </Modal>
+
+      <Modal
+        open={showmodall}
+        width={isMobile ? "85%" : "30%"}
+        centered
+        destroyOnClose
+        onCancel={hideModall}
+        footer={null}
+        maskClosable={false}
+      >
+        {loadingDetail ? (
+          <div className="w-full h-[280px] flex items-center justify-center">
+            <Spin />
+          </div>
+        ) : (
+          <div className="flex flex-col pb-4">
+            <div className="h-[100px] mt-10  rounded-md">
+              <img
+                src={detailData?.img}
+                alt={detailData?.img}
+                className="h-full object-contain rounded-md bg-[red]"
+              />
+            </div>
+
+            <h2 className="p-0 w-full">{detailData?.title}</h2>
+            <p className="text-left p-0 m-0">{detailData?.des}</p>
+
+            <p className="p-0 m-0 mt-4">
+              <span className="font-semibold p-0 m-0"> Promotion Limit</span>:{" "}
+              {detailData?.promotion_limit}
+            </p>
+            <p className="">
+              <span className="font-semibold p-0 m-0"> User Limit</span>:{" "}
+              {detailData?.promotion_limit}
+            </p>
+
+            <div className="mt-4">
+              <MyButton
+                text="Reedem"
+                mdh="h-[35px]"
+                mdw="w-[120px]"
+                bgColor="bg-[#23262d]"
+                textColor="text-white"
+                onClick={() => {
+                  // setSelectedPromotions(d.id);
+                  setShowModal(true);
+                  setShowModall(false);
+                }}
+              />
+            </div>
+          </div>
+        )}
       </Modal>
     </>
   );

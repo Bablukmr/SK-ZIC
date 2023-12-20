@@ -10,12 +10,6 @@ export default function ForgetPasswordReset(props) {
   const [pass, setPass] = useState(null);
   const [confirmPass, setConfirmPass] = useState(null);
 
-  // useEffect(() => {
-  //   console.log(uid);
-  //   console.log(token);
-  //   console.log(props.params);
-  // });
-
   const sendEmail = (e) => {
     e.preventDefault();
     if (pass === confirmPass) {

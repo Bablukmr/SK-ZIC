@@ -222,3 +222,53 @@ export const getUserData = (token) => {
       });
   };
 };
+
+export const getUserPoint = (token, userId) => {
+  return (dispatch) => {
+    axios
+      .get(`http://localhost:8000/qr/user-point?id=${userId}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((d) => {
+        dispatch({
+          type: types.USER_POINT,
+          payload: {
+            point: d.data && Array.isArray(d.data) && d.data[0],
+          },
+        });
+        // setPoint(d.data && Array.isArray(d.data) && d.data[0]);
+        // console.log(d.data);
+      })
+      .catch((e) => {
+        notification["error"]({
+          message: "Error !!",
+          description: "Something went wrong fetching user point.",
+        });
+      });
+
+    // axios
+    //   // .get("http://localhost:8000/dj-rest-auth/user/", {
+    //   .get("http://localhost:8000/users/loggedInUser/", {
+    //     headers: {
+    //       Authorization: `Token ${token}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log("res", res?.data[0]);
+    //     dispatch({
+    //       type: types.USER_DATA,
+    //       payload: {
+    //         userData: res?.data[0],
+    //       },
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     notification["error"]({
+    //       message: "Error !!",
+    //       description: "Something went wrong fetching user data.",
+    //     });
+    //   });
+  };
+};

@@ -149,7 +149,6 @@ export default function DownloadQr() {
         {value && (
           <div className="flex mt-8">
             <div className="w-[180px] mr-10" />
-
             <MyButton
               onClick={onClick}
               text="Download"

@@ -56,17 +56,13 @@ export default function PointHistory() {
   }, [userId]);
 
   return (
-    <div
-      className=" h-[calc(100vh-120px)]
-  md:h-[calc(100vh-60px)] overflow-auto px-2 md:px-4"
-      // justify-center items-center
-    >
-      <div className=" bg-[#f0f0f0] px-6 rounded-lg mt-[20px] h-[160px] flex flex-col ">
-        <p className="m-0 mt-8">Point Balance</p>
+    <div className=" h-[calc(100vh-120px)]  md:h-[calc(100vh-60px)] overflow-auto">
+      <div className="w-[96%] ml-[2%] md:w-[90%] md:ml-[5%] lg:w-[80%] lg:ml-[10%] xl:w-[70%] xl:ml-[15%] bg-[#f0f0f0] px-6 rounded-lg mt-[20px] h-[160px] flex flex-col justify-center">
+        <p className="m-0 ">Point Balance</p>
         <p className="m-0 mt-2 font-bold text-[25px]">{point?.points}</p>
       </div>
 
-      <div className=" bg-[#f0f0f0] px-4 py-6 rounded-lg mt-6 ">
+      <div className=" w-[96%] ml-[2%] md:w-[90%] md:ml-[5%] lg:w-[80%] lg:ml-[10%] xl:w-[70%] xl:ml-[15%] bg-[#f0f0f0] px-4 py-6 rounded-lg mt-6 ">
         <ul className="list-none m-0 p-0">
           {pointHistory.length === 0 ? (
             <p>No Point history available.</p>
