@@ -1,0 +1,153 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../../store/action";
+// import axios from "axios";
+
+export default function AdminMenu(props) {
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.AuthReducer.token);
+
+  const { setNavbarOpen, isMobile } = props;
+  const [menuItems] = useState([
+    { id: 1, value: "Dashboard", link: "/admin" },
+    { id: 2, value: "Manage User Account", link: "/admin/manage-users" },
+    { id: 3, value: "Manage Promotions", link: "/admin/manage-promotions" },
+    { id: 4, value: "Generate QR Codes", link: "/admin/generate-qr" },
+
+    { id: 5, value: "View Analytics", link: "#" },
+    { id: 6, value: "Live Chat With Users", link: "/admin/admin-chat" },
+    { id: 7, value: "QR XLSX Download ", link: "/admin/download-qr" },
+    { id: 8, value: "Download QR Csv", link: "#" },
+    { id: 9, value: "Expired QR", link: "/admin/expired-qr" },
+
+    { id: 10, value: "Verify Users", link: "/admin/verify-users" },
+    { id: 11, value: "Update QR" },
+    // { id: 12, value: "Update Expired QR", link: "/admin/update-expired-qr" },
+    // { id: 13, value: "Update Unused QR", link: "/admin/update-unused-qr" },
+
+    { id: 14, value: "upload-qr", link: "/admin/upload-qr" },
+  ]);
+  const [selected, setSelected] = useState(1);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+
+  const subMenuForUpdate = [
+    { id: 12, value: "Update Expired QR", link: "/admin/update-expired-qr" },
+    { id: 13, value: "Update Unused QR", link: "/admin/update-unused-qr" },
+  ];
+
+  const handleMenuItemClick = (menuItem) => {
+    setSelected(menuItem.id);
+
+    if (menuItem.id === 11) {
+      setIsSubMenuOpen(!isSubMenuOpen);
+    } else {
+      setIsSubMenuOpen(false);
+    }
+
+    if (menuItem.id === 8) {
+      window.open("https://api-dev.skzicph.com/qr/generate-csv", "_blank");
+    }
+
+    if (isMobile) setNavbarOpen(false);
+  };
+
+  return (
+    <div className="w-[280px] text-white bg-[#23262d] h-[calc(100vh-50px)] overflow-auto">
+      <div className="flex items-center h-[180px] flex-col">
+        {isMobile && (
+          <div className="h-[40px] items-center w-full flex justify-end">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 pr-4"
+              onClick={() => {
+                setNavbarOpen(false);
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        )}
+
+        <div className="bg-white mt-8 rounded-full w-[100px] h-[100px] p-1">
+          <img
+            src="/2df2.jpg"
+            alt="/"
+            className="rounded-full object-cover h-[100px] w-[100px]"
+          />
+        </div>
+
+        <p className="m-0 p-0 mt-3"> Jerry Maguire</p>
+      </div>
+
+      <ul className="list-none m-0 p-0 mt-10 md:mt-6 pb-6 space-y-2 mx-2">
+        {menuItems.map((menuItem) => (
+          <div key={menuItem.id}>
+            <Link to={menuItem.link} className="no-underline text-white">
+              <li
+                className={`rounded pl-6 py-1 cursor-pointer ${
+                  (selected === menuItem.id ||
+                    (isSubMenuOpen &&
+                      selected === 11 &&
+                      menuItem.id >= 12 &&
+                      menuItem.id <= 13)) &&
+                  "bg-gradient-to-r from-[#8c8c8c] to-[#5C5C5C]"
+                }`}
+                onClick={() => handleMenuItemClick(menuItem)}
+              >
+                <small>{menuItem.value}</small>
+              </li>
+            </Link>
+          </div>
+        ))}
+
+        {isSubMenuOpen && selected === 11 && (
+          <ul className="list-none m-0 p-0 mt-2 space-y-2 mx-2">
+            {subMenuForUpdate.map((subItem) => (
+              <Link
+                to={subItem.link}
+                className="no-underline text-white"
+                key={subItem.id}
+              >
+                <li
+                  className={`rounded pl-12 py-1 cursor-pointer ${
+                    selected === subItem.id &&
+                    "bg-gradient-to-r from-[#8c8c8c] to-[#5C5C5C]"
+                  }`}
+                  onClick={() => {
+                    setSelected(subItem.id);
+                    setIsSubMenuOpen(false);
+                    if (isMobile) setNavbarOpen(false);
+                  }}
+                >
+                  <small>{subItem.value}</small>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        )}
+      </ul>
+
+      {isMobile && (
+        <div className="absolute bottom-6 flex justify-center items-center w-full">
+          <button
+            className="py-2 px-4 bg-[#000000] outline-none border-0 text-white rounded-md"
+            onClick={() => dispatch(userLogout(token))}
+          >
+            Log Out
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
