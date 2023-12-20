@@ -18,6 +18,7 @@ import axios from "axios";
 import WebSocketInstance from "../../chat/websocket";
 import CheckMobileHook480 from "../../components/checkMobile";
 import MobileFooter from "./mobileFooter";
+import DesktopHeader from "./appdesktopHeader";
 
 export default function AppLayout() {
   const navigate = useNavigate();
@@ -105,10 +106,25 @@ export default function AppLayout() {
         dispatch(UrlTo(route));
       } else {
         navigate("/signin");
-        window.location.reload();
+        // window.location.reload();
+
+        // testing
+
+        const id = searchParams.get("id");
+        let route;
+        if (id) {
+          route = location?.pathname + "?id=" + id;
+        } else {
+          route = location?.pathname;
+        }
+        dispatch(UrlTo(route));
       }
     }
   }, [token]);
+
+  // useEffect(() => {
+  // alert("route");
+  // });
 
   return !token ? (
     <div className="flex items-center h-screen">
@@ -117,7 +133,7 @@ export default function AppLayout() {
   ) : (
     <div className="w-full">
       <div className="h-[60px]">
-        <AppHeader count={count} />
+        <AppHeader count={count} mobile={mobile} />
       </div>
       <div
         className={`${

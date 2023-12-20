@@ -1,120 +1,87 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CheckMobileHook480 from "../../components/checkMobile";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MyButton from "../../components/button";
-// import { changeDarkMode } from "../../store/action";
 
-export default function LandingPage() {
+import { Typography, Modal, Spin } from "antd";
+import Branding from "../components/branding";
+
+const { Paragraph, Text } = Typography;
+
+export default function LandingPage(props) {
+  console.log("zz", props);
+
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const isMobile = CheckMobileHook480();
+
   const mobile = CheckMobileHook480();
   const [promotionData, setPromotionData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [brandingImages, setBrandingImages] = useState([]);
+  const [landingData, setLandingData] = useState([]);
+
+  const [showmodal, setShowModal] = useState(false);
+  const [loadingDetail, setLoadingDetail] = useState(false);
+  const [detailData, setDetailData] = useState(null);
+
+  const [toggleMobile, setToggleMobile] = useState(true);
 
   const darkMode = useSelector((state) => state.AuthReducer.darkMode);
-  // console.log(darkMode);
 
   useEffect(() => {
     axios
       .get("http://localhost:8000/qr/promotion-list")
       .then((d) => {
-        // console.log(d.data);
-        setPromotionData(d.data);
+        console.log("pro", d.data);
+        setPromotionData(d.data.results);
       })
       .catch((e) => {
-        // console.log(e.response);
+        console.log(e.response);
       });
   }, []);
 
-  const rewardData = [
-    {
-      id: 1,
-      title: "reward1",
-      description: "this is reward 1",
-      points: "67 points",
-    },
-    {
-      id: 2,
-      title: "reward2",
-      description: "this is reward 2",
-      points: "68 points",
-    },
-    {
-      id: 3,
-      title: "reward3",
-      description: "this is reward 3",
-      points: "69 points",
-    },
-    {
-      id: 4,
-      title: "reward4",
-      description: "this is reward 4",
-      points: "70 points",
-    },
-    {
-      id: 5,
-      title: "reward5",
-      description: "this is reward 5",
-      points: "71 points",
-    },
-    {
-      id: 6,
-      title: "reward6",
-      description: "this is reward 6",
-      points: "72 points",
-    },
-    {
-      id: 7,
-      title: "reward7",
-      description: "this is reward 7",
-      points: "73 points",
-    },
-  ];
-
-  const handlePage = (val) => {
-    setPage(val);
-  };
-
   useEffect(() => {
-    // let mode = localStorage.getItem("darkMode");
-    // console.log(mode);
+    axios
+      .get("http://localhost:8000/ui/branding-public")
+      .then((d) => {
+        setBrandingImages(d.data);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+
+    axios
+      .get("http://localhost:8000/ui/landing/")
+      .then((d) => {
+        setLandingData(d.data);
+        // console.log("abc", d.data);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
   }, []);
 
-  const [toggleMobile, setToggleMobile] = useState(true);
-  // console.log("darkMode", darkMode);
-  const brandingImg = [
-    { id: 1, url: "/poster-1.jpg" },
-    { id: 2, url: "/poster-2.jpg" },
-    { id: 3, url: "/poster-3.jpg" },
-    { id: 4, url: "/poster-2.jpg" },
-    { id: 5, url: "/poster-1.jpg" },
-    { id: 6, url: "/poster-3.jpg" },
-    { id: 7, url: "/poster-1.jpg" },
-  ];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const hideModal = () => {
+    setShowModal(false);
+    // setSaved(false);
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      let abc = currentImageIndex + (1 % brandingImg.length);
-      console.log("a", abc);
-      console.log("b", brandingImg.length);
-      console.log("c", currentImageIndex + 1);
-      // setCurrentImageIndex(currentImageIndex + 1);
-      if (currentImageIndex + 1 === brandingImg.length - 2) {
-        setCurrentImageIndex(0);
-      } else {
-        setCurrentImageIndex(currentImageIndex + 1);
-      }
-      //  % brandingImg.length);
-      // setCurrentImageIndex((currentImageIndex + 1) % brandingImg.length);
-    }, 3000);
+  const showdetail = (id) => {
+    setShowModal(true);
+    setLoadingDetail(true);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [currentImageIndex]);
+    axios
+      .get(`http://localhost:8000/qr/promotion?id=${id}`)
+      .then((d) => {
+        setLoadingDetail(false);
+        setDetailData(d.data && Array.isArray(d.data) && d.data[0]);
+      })
+      .catch((e) => {
+        setLoadingDetail(false);
+        console.log(e.response);
+      });
+  };
 
   return (
     <div className={`pt-[50px] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
@@ -125,13 +92,20 @@ export default function LandingPage() {
       >
         <div className="w-full md:w-[50%]  flex  flex-col items-center ">
           <div className="w-[90%] md:w-[80%] ml-[5%]">
-            <h1
-              className={`leading-[50px] lg:leading-[60px] xl:leading-[80px] 2xl:leading-[120px] text-[40px] lg:text-[60px] 2xl:text-[80px] font-normal ${
-                darkMode ? "" : "text-[#333333]"
-              } `}
+            <a
+              href={landingData[0]?.txt_link}
+              className="no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Slogan of The Company
-            </h1>
+              <h1
+                className={`leading-[50px] lg:leading-[60px] xl:leading-[80px] 2xl:leading-[120px] text-[40px] lg:text-[60px] 2xl:text-[80px] font-normal ${
+                  darkMode ? "" : "text-[#333333]"
+                } `}
+              >
+                Slogan of The Company
+              </h1>
+            </a>
             <p
               className={`w-[90%] md:w-[60%]  ${
                 darkMode ? "" : "text-slate-400"
@@ -142,14 +116,16 @@ export default function LandingPage() {
             </p>
 
             <div className="my-4">
-              <MyButton
-                type=""
-                text="Register Now"
-                mdh="h-[35px]"
-                mdw="w-[120px]"
-                bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
-                textColor="text-white"
-              />
+              <Link to="/signup">
+                <MyButton
+                  type=""
+                  text="Register Now"
+                  mdh="h-[35px]"
+                  mdw="w-[120px]"
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  textColor="text-white"
+                />
+              </Link>
             </div>
           </div>
         </div>
@@ -157,11 +133,18 @@ export default function LandingPage() {
           // bg-[#EEEEEE]
           className={`w-[50%] h-full flex items-center justify-center`}
         >
-          <img
-            src="/sookee-heart.png"
-            alt="img"
-            className="w-[80%] md:w-[70%] lg:w-[35%] xl:w-[25%] lg:absolute -top-6"
-          />
+          <a
+            href={landingData[0]?.img_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" h-full flex items-center justify-center"
+          >
+            <img
+              src="/sookee-heart.png"
+              alt="img"
+              className="w-[80%] md:w-[70%] lg:w-[35%] xl:w-[25%] lg:absolute -top-6"
+            />
+          </a>
         </div>
       </div>
       {/* Get Rewarded in 3 Simple Steps! */}
@@ -232,151 +215,72 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      {/* rewards */}
-      {mobile ? (
-        //for mobile
-        <div className="w-full flex flex-col items-center justify-center gap-y-4">
-          <div className="w-[90%]  mt-[120px] gap-4 grid grid-cols-2">
-            {rewardData.slice(0, 2).map((reward) => (
-              <div
-                key={reward.id}
-                className="border-2 p-2 flex flex-col items-center justify-center gap-2 rounded-md"
-              >
-                <div className=" w-full h-[80px] rounded-md">
-                  <img
-                    src="/black.png"
-                    alt="img"
-                    className="w-full h-full rounded-md"
-                  />{" "}
-                </div>
-                <p className="m-0 p-0 w-full text-base font-medium">
-                  {reward.title}
-                </p>
-                <p className="m-0 p-0 w-full text-[#979797] text-xs">
-                  {reward.description}
-                </p>
-                <p className="m-0 p-0 w-full text-base font-medium">
-                  {reward.points}
-                </p>
-                {/* <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md">
-                  Redeem
-                </button> */}
-                <MyButton
-                  text="Redeem"
-                  type="submit"
-                  mdh="h-[35px]"
-                  mdw="w-full"
-                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
-                  textColor="text-white"
-                />
-              </div>
-            ))}
-          </div>
-          <p
-            onClick={() => {
-              navigate("/rewards");
-            }}
-            className="text-[#636363] px-4 py-1 rounded-md cursor-pointer"
-          >
-            See More...
-          </p>
-        </div>
-      ) : (
-        // for desktop
-        <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-[90%] mt-[120px] gap-x-4 gap-y-8 grid grid-cols-4 ">
-            {rewardData.map((reward) => (
-              <div
-                key={reward.id}
-                className="border-2 p-2 flex flex-col items-center justify-center gap-2 rounded-md"
-              >
-                <div className=" w-full md:h-[80px] lg:h-[100px] xl:h-[150px]  rounded-md">
-                  <img
-                    src="/black.png"
-                    alt="img"
-                    className="w-full h-full rounded-md"
-                  />
-                </div>
-                <p className="m-0 p-0 w-full text-base font-medium">
-                  {reward.title}
-                </p>
-                <p className="m-0 p-0 w-full text-[#979797] text-xs">
-                  {reward.description}
-                </p>
-                <p className="m-0 p-0 w-full text-base font-medium">
-                  {reward.points}
-                </p>
-                {/* <button className=" w-full bg-[#333333] text-white px-10 py-2 rounded-md cursor-pointer">
-                  Redeem
-                </button> */}
-                <MyButton
-                  text="Redeem"
-                  type="submit"
-                  mdh="h-[35px]"
-                  mdw="w-full"
-                  // bg-[#23262d]
-                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#40a9ff]"}`}
-                  textColor="text-white"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="w-[80%] mt-5 text-md font-medium flex items-center justify-center gap-6">
-            <svg
-              onClick={() => handlePage(page - 1)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-4 cursor-pointer"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
-            </svg>
 
-            <p onClick={() => handlePage(1)} className="cursor-pointer">
-              1
-            </p>
-            <p onClick={() => handlePage(2)} className="cursor-pointer">
-              2
-            </p>
-            <p onClick={() => handlePage(3)} className="cursor-pointer">
-              3
-            </p>
-            <p onClick={() => handlePage(4)} className="cursor-pointer">
-              4
-            </p>
-            <p onClick={() => handlePage(5)} className="cursor-pointer">
-              5
-            </p>
-            <p onClick={() => handlePage(6)} className="cursor-pointer">
-              ...
-            </p>
-            <svg
-              onClick={() => handlePage(page + 1)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-4 cursor-pointer"
+      {/* rewards */}
+      <div
+        className="w-full flex flex-col items-center justify-center"
+        ref={props.reff}
+      >
+        <div className="w-[90%] mt-[120px] gap-x-4 gap-y-20 grid grid-cols-4 ">
+          {promotionData?.map((d) => (
+            <div
+              key={d.id}
+              className="border-2  flex flex-col items-center justify-center gap-2 
+              rounded-md"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              <div className=" w-full h-[80px] lg:h-[100px] xl:h-[150px]  rounded-md">
+                <img
+                  src={d.img}
+                  alt={d.img}
+                  className="w-full h-full rounded-md bg-[red]"
+                />
+              </div>
+              <p className="m-0 p-0 w-full text-base font-medium">{d.title}</p>
+
+              <Paragraph className="w-full m-0 p-0" ellipsis={true}>
+                {d.des}
+              </Paragraph>
+
+              <p className="mb-2 mt-[-12px] m-0 p-0 w-full text-base font-medium">
+                {d.redeem_points}
+              </p>
+
+              <MyButton
+                text="Reedem"
+                onClick={() => {
+                  showdetail(d.id);
+                }}
+                type="submit"
+                mdh="h-[35px]"
+                mdw="w-full"
+                // bg-[#23262d]
+                bgColor={`${darkMode ? "bg-red-500" : "bg-[#40a9ff]"}`}
+                textColor="text-white"
               />
-            </svg>
-          </div>
+            </div>
+          ))}
         </div>
-      )}
+
+        <div className="mt-16 w-full flex justify-center">
+          <MyButton
+            text="View All Rewards"
+            mdh="h-[35px]"
+            mdw="w-[180px]"
+            bgColor="bg-[#23262d]"
+            textColor="text-white"
+            onClick={() => {
+              navigate("/app/promotions");
+            }}
+          />
+        </div>
+      </div>
+
       {/* Branding & Promotions */}
 
-      <div className="w-full mt-[120px] flex flex-col items-center justify-center">
+      <div
+        className="w-full mt-[120px] flex flex-col items-center justify-center"
+        ref={props.brandingref}
+      >
         <div className="w-[90%] flex  flex-col items-center justify-center">
           <h1
             className={`leading-[30px] md:leading-[40px] lg:leading-[50px] 2xl:leading-[60px] text-[22px] lg:text-[30px] 2xl:text-[35px] font-normal ${
@@ -393,25 +297,11 @@ export default function LandingPage() {
             Stickers are components and pre-defined elements you...
           </p>
         </div>
-        <div className="w-[90%] md:w-[90%] lg:w-[70%] xl:w-[60%] grid items-center justify-center mt-[40px] md:mt-[50px] grid-cols-3 gap-6 ">
-          {brandingImg
-            .slice(currentImageIndex, currentImageIndex + 3)
-            .map((img, index) => (
-              <div
-                key={img.id}
-                className={`md:w-[200px] ${
-                  index === 1 ? "transform scale-125" : ""
-                }`}
-              >
-                {/* <h1>{img.id}</h1> */}
-                <img
-                  // onClick={() => setCurrentImageIndex(index)}
-                  src={img.url}
-                  alt="/"
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
+
+        <div className="h-[200px w-[70%] md:w-[90%] lg:w-[80%] xl:w-[60%]  mt-[40px] md:mt-[50px] ">
+          {brandingImages.length !== 0 && (
+            <Branding brandingimages={brandingImages} mobile={mobile} />
+          )}
         </div>
       </div>
 
@@ -797,30 +687,54 @@ export default function LandingPage() {
             IMG
           </div> */}
         </div>
-
-        {/* <div
-          className={`w-full my-10 h-[700px] md:h-[400px] ${
-            darkMode ? "bg-slate-700" : "bg-[#383434]"
-          }   flex justify-center items-center`}
-        >
-          <div className="w-[80%] ml-[10%] md:ml-0 flex-col flex md:flex-row items-center justify-center ">
-            <div className="w-[90%] ml-[5%] md:w-[40%] h-[300px]">
+      </div>
+      <Modal
+        open={showmodal}
+        width={isMobile ? "85%" : "30%"}
+        centered
+        destroyOnClose
+        onCancel={hideModal}
+        footer={null}
+        maskClosable={false}
+      >
+        {loadingDetail ? (
+          <div className="w-full h-[280px] flex items-center justify-center">
+            <Spin />
+          </div>
+        ) : (
+          <div className="flex flex-col pb-4">
+            <div className="h-[100px] mt-10  rounded-md">
               <img
-                src="/sookee-thumbs-up.png"
-                alt="/"
-                className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
+                src={detailData?.img}
+                alt={detailData?.img}
+                className="h-full object-contain rounded-md bg-[red]"
               />
             </div>
-            <div className="w-[90%] ml-[5%] md:w-[40%] h-[300px]">
-              <img
-                src="/Asset 12@2x-8.png"
-                alt="/"
-                className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
+
+            <h2 className="p-0 w-full">{detailData?.title}</h2>
+            <p className="text-left p-0 m-0">{detailData?.des}</p>
+
+            <p className="p-0 m-0 mt-4">
+              <span className="font-semibold p-0 m-0"> Promotion Limit</span>:{" "}
+              {detailData?.promotion_limit}
+            </p>
+            <p className="">
+              <span className="font-semibold p-0 m-0"> User Limit</span>:{" "}
+              {detailData?.promotion_limit}
+            </p>
+
+            <div className="mt-4">
+              <MyButton
+                text="Reedem"
+                mdh="h-[35px]"
+                mdw="w-[120px]"
+                bgColor="bg-[#23262d]"
+                textColor="text-white"
               />
             </div>
           </div>
-        </div> */}
-      </div>
+        )}
+      </Modal>
     </div>
   );
 }

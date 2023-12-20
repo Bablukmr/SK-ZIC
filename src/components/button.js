@@ -7,7 +7,6 @@ export default function MyButton(props) {
 
   return (
     <button
-      // hover:opacity-90 active:shadow-md focus:border-transparent focus:ring-0
       bgColor={``}
       className={` ${mdh} ${mdw} ${textColor}  text-center rounded-md cursor-pointer
              outline-none border-none  active:shadow-none
