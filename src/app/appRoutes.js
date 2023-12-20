@@ -7,7 +7,7 @@ import Webchat from "./pages/webchat";
 import Promotions from "./pages/promotions";
 import Profile from "./pages/profile";
 import PointHistory from "./pages/pointHistory";
-
+import UploadQR from "./pages/uploadQr";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -18,6 +18,7 @@ export default function AppRoutes() {
       <Route path="promotions" element={<Promotions />} />
       <Route path="profile" element={<Profile />} />
       <Route path="point-history" element={<PointHistory />} />
+      <Route path="upload-qr" element={<UploadQR />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -94,12 +94,12 @@ export default function UserDetail() {
               <p className="p-0 m-0">{pointData?.points}</p>
               <small className="p-0 m-0">Available Points</small>
             </div>
-            <MyButton
+            {/* <MyButton
               text="Adjust"
               mdh="h-[30px]"
               mdw="w-[70px]"
               textColor="text-[23262d]"
-            />
+            /> */}
           </div>
         </div>
       </div>

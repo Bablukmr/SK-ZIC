@@ -3,28 +3,51 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { changeDarkMode } from "../../store/action";
 
-export default function DesktopHeader() {
+export default function DesktopHeader(props) {
   const darkMode = useSelector((state) => state.AuthReducer.darkMode);
 
   console.log(darkMode);
   const dispatch = useDispatch();
 
   return (
-    <div className={`${
-      darkMode ? "bg-slate-700 text-white" : ""
-    } bg-[greeen] h-[60px] flex justify-between`}>
+    <div
+      className={`${
+        darkMode ? "bg-slate-700 text-white" : ""
+      } bg-[greeen] h-[60px] flex justify-between`}
+    >
       <div className="flex justify-center items-center w-1/5 bg-[cyaan]">
-        <img src="/logo.png" className="w-[80px] h-[20px]" />
+        <Link to="/">
+          <img src="/logo.png" className="w-[80px] h-[20px]" />
+        </Link>
       </div>
       <div className="w-1/2 bg-[greeen] flex items-center">
         <ul className="flex justify-evenly w-full list-none p-0">
           <li className="cursor-pointer">
-            <Link to="/" className={`no-underline ${darkMode ? "text-white" :"text-black"}`}>
+            <Link
+              to="/"
+              className={`no-underline ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
               Home
             </Link>
           </li>
-          <li className="cursor-pointer ">Rewards</li>
-          <li className="cursor-pointer ">Promotions</li>
+          <li
+            className="cursor-pointer "
+            onClick={() => {
+              props.reff.current.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Rewards
+          </li>
+          <li
+            className="cursor-pointer "
+            onClick={() => {
+              props.brandingref.current.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Promotions
+          </li>
           <li className="cursor-pointer ">Help & Support</li>
         </ul>
       </div>
@@ -32,7 +55,7 @@ export default function DesktopHeader() {
       <div className="flex items-center justify-center">
         <div
           className={`flex  relative gap-1 p-1 rounded-full ${
-            darkMode ? "border-[#8c8c8c]": "border-slate-300  "
+            darkMode ? "border-[#8c8c8c]" : "border-slate-300  "
           }  h-[20px] items-center justify-center border border-solid`}
         >
           <p

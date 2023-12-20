@@ -14,6 +14,7 @@ const initialAuthState = {
   newMessage: null,
   session: null,
   darkMode: false,
+  point: null,
 };
 
 const AuthReducer = (state = initialAuthState, { type, payload }) => {
@@ -28,6 +29,12 @@ const AuthReducer = (state = initialAuthState, { type, payload }) => {
       return {
         ...state,
         darkMode: payload.darkMode,
+      };
+
+    case types.USER_POINT:
+      return {
+        ...state,
+        point: payload.point,
       };
 
     case types.CHAT_MESSAGE:
