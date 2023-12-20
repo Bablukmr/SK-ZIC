@@ -58,9 +58,11 @@ function SignUp1(props) {
   };
 
   return (
-    <div className={` ${
-      darkMode ? "bg-slate-800 text-white" : ""
-    } z-10 min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center`}>
+    <div
+      className={` ${
+        darkMode ? "bg-slate-800 text-white" : ""
+      } z-10 min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center`}
+    >
       <div className=" w-full">
         <h2 className=" text-xl sm:text-2xl text-center p-0">Sign Up</h2>
       </div>
@@ -102,7 +104,7 @@ function SignUp1(props) {
           </div>
           <div className="w-full mt-2 sm:mt-0 sm:w-1/2 bg-[yeellow]">
             <label>
-              <small>Last name </small>
+              <small>Last name</small>
             </label>
             <div
               className="border-[#232627] bg-[#fafafa] mt-2 rounded-md border border-solid flex items-center 
@@ -129,6 +131,22 @@ function SignUp1(props) {
                 className="text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
               />
             </div>
+          </div>
+        </div>
+
+        <div className="w-full ">
+          <label>
+            <small>User Type </small>
+          </label>
+          <div className="w-full mt-3">
+            <select
+            value={formState.type}
+              onChange={(e) => handleChange(e.target.value, "type")}
+              className="w-full h-[40px] rounded-md px-3 outline-none border-none"
+            >
+              <option value="1" >Fronline</option>
+              <option value="2" >RTO Owner</option>
+            </select>
           </div>
         </div>
 
@@ -217,9 +235,13 @@ function SignUp1(props) {
         <div className="flex bg-[rsed] mt-6 items-center ">
           <small className="p-0 m-0">Already have an account? </small>
           <Link to="/signin" className="underline ml-2  mt-[-5px]">
-            <small className={`p-0 m-0 ${
-                      darkMode ? "text-slate-400" : "text-black"
-                    } underline `}>Login Now</small>
+            <small
+              className={`p-0 m-0 ${
+                darkMode ? "text-slate-400" : "text-black"
+              } underline `}
+            >
+              Login Now
+            </small>
           </Link>
         </div>
       </form>

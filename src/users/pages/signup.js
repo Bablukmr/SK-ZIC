@@ -20,11 +20,23 @@ const defaultValue = {
   password: "",
   userEmail: "",
   phoneNumber: "",
+  type: "1",
+
+  gender:"male",
+  age:"",
+  frontlinerType:"",
+  RtoName:"",
+  RtoAddress:"",
+
+  StoreName:"",
+  OwnersName:"",
+  Supplier:""
+
 };
 
 function SignUp() {
   const [formState, setFormState] = useState(defaultValue);
-
+  // console.log(formState);
   const [signup, setSignup] = useState(false);
   const [loading, setLoading] = useState(false);
 
