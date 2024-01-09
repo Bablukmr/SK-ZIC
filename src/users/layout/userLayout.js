@@ -13,7 +13,7 @@ export default function UserLayout({ children }) {
       <div className="min-h-[calc(100vh-60px)]">
         <UserRoutes reff={reff} brandingref={brandingref} />
       </div>
-      <div className="h-[200px]">
+      <div className="">
         <WebFooter />
       </div>
     </div>

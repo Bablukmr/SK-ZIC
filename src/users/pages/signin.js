@@ -62,31 +62,33 @@ export default function UserSignIn() {
   };
 
   return (
-    <div className="flex items-center h-[calc(100vh-60px)]">
+    <div className="flex items-center justify-center h-[calc(100vh-60px)]">
       {loadingLogin ? (
         <LoadingAni />
       ) : (
         <>
-          {!isMobile && (
+          {/* {!isMobile && (
             <div
               className={`w-1/2 h-full ${
                 darkMode ? "bg-slate-800 text-white" : ""
               }  flex items-center justify-center`}
             >
-              {/* <img src="/2df2.jpg" width={300} height={300} /> */}
             </div>
-          )}
+          )} */}
+
+          {/* <img src="/2df2.jpg" width={300} height={300} /> */}
+
           <div
             className={`${
               darkMode ? "bg-slate-800 text-white" : ""
-            } w-full lg:w-1/2 flex flex-col justify-center items-center h-full`}
+            } w-full  flex flex-col justify-center items-center h-full`}
           >
             <div className=" bg-[oange] w-full mt-[-40px] lg:mt-[-20px] flex flex-col items-center">
               <div className="bg-[redd] w-3/4 lg:w-1/2">
-                <h2 className="text-left">Sign In</h2>
+                <h2 className="text-center">Sign In</h2>
               </div>
 
-              <form className="bg-[redd] w-3/4 lg:w-1/2 flex flex-col gap-y-6 ">
+              <form className="bg-[redd]  w-[75%] sm:w-[25%] flex flex-col gap-y-6 ">
                 <div className="flex flex-col gap-y-2">
                   <label>
                     <small>Email </small>
@@ -153,7 +155,7 @@ export default function UserSignIn() {
                     />
                   </div>
                 </div>
-                <small className="cursor-pointer font-semibold w-[120px]">
+                <small className="cursor-pointer font-semibold w-fit">
                   <Link
                     to="/forget-password"
                     className={` ${
@@ -172,12 +174,12 @@ export default function UserSignIn() {
                 </button> */}
 
                 <MyButton
-                 text="Login"
-                 mdh="h-[35px]"
-                 mdw="w-full"
-                 bgColor={`${darkMode ? "bg-red-500":"bg-[#23262d]"}`}
-                 textColor="text-white"
-                 onClick={ss}
+                  text="Login"
+                  mdh="h-[35px]"
+                  mdw="w-full"
+                  bgColor={`${darkMode ? "bg-red-500" : "bg-[#23262d]"}`}
+                  textColor="text-white"
+                  onClick={ss}
                 />
 
                 <div className="flex bg-[rsed] h-[40px] items-center">

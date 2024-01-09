@@ -55,7 +55,7 @@ function SignUp2(props) {
       ) {
         notification.error({
           message: "Error !!",
-          description: "RTO name missing.",
+          description: "RTO Address missing.",
         });
       } else {
         nextStep();
@@ -166,7 +166,7 @@ function SignUp2(props) {
     >
       <div className="w-full flex">
         <div
-          className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
+          className="cursor-pointer sm:z-10 ml-[10%] sm:ml-[7.5%] mt-3"
           onClick={previousStep}
         >
           <svg
@@ -200,7 +200,7 @@ function SignUp2(props) {
                 <small>Address</small>
               </label>
               <div className="border-[#232627] mt-2 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ function SignUp2(props) {
                     strokeLinecap="round"
                     d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
                   />
-                </svg>
+                </svg> */}
                 <input
                   value={formState.address}
                   onChange={(e) => handleChange(e.target.value, "address")}
@@ -226,12 +226,12 @@ function SignUp2(props) {
               <label>
                 <small>Gender</small>
               </label>
-              <div className="w-full mt-3">
+              <div className="w-full mt-3 ">
                 <select
                   value={formState.gender}
                   onChange={(e) => handleChange(e.target.value, "gender")}
                   placeholder="Gender"
-                  className="w-full h-[40px] rounded-md px-3 outline-none border-none"
+                  className="w-full h-[40px] rounded-md px-3 outline-none border border-black"
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -245,7 +245,7 @@ function SignUp2(props) {
                 <small>Age</small>
               </label>
               <div className="border-[#232627] mt-2 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -257,7 +257,7 @@ function SignUp2(props) {
                     strokeLinecap="round"
                     d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
                   />
-                </svg>
+                </svg> */}
                 <input
                   type="number"
                   value={formState.age}
@@ -279,7 +279,7 @@ function SignUp2(props) {
                   onChange={(e) =>
                     handleChange(e.target.value, "frontlinerType")
                   }
-                  className="w-full h-[40px] rounded-md px-3 outline-none border-none"
+                  className="w-full h-[40px] rounded-md px-3 outline-none border border-black"
                 >
                   <option value="staff">Staff</option>
                   <option value="mechanic ">Mechanic </option>
@@ -293,7 +293,7 @@ function SignUp2(props) {
                 <small>RTO Name</small>
               </label>
               <div className="border-[#232627] mt-2 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -305,7 +305,7 @@ function SignUp2(props) {
                     strokeLinecap="round"
                     d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
                   />
-                </svg>
+                </svg> */}
                 <input
                   value={formState.rtoName}
                   onChange={(e) => handleChange(e.target.value, "rtoName")}
@@ -320,7 +320,7 @@ function SignUp2(props) {
                 <small>RTO Address</small>
               </label>
               <div className="border-[#232627] mt-2 bg-[#fafafa] rounded-md border border-solid flex items-center px-2">
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -332,7 +332,7 @@ function SignUp2(props) {
                     strokeLinecap="round"
                     d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
                   />
-                </svg>
+                </svg> */}
                 <input
                   value={formState.RtoAddress}
                   onChange={(e) => handleChange(e.target.value, "RtoAddress")}
@@ -448,7 +448,7 @@ function SignUp2(props) {
                 <input
                   value={formState.phoneNumber}
                   onChange={(e) => handleChange(e.target.value, "phoneNumber")}
-                  type="tel"
+                  type="number"
                   placeholder="Phone Number"
                   className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
                 />

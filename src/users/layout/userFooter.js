@@ -5,27 +5,48 @@ import { useSelector } from "react-redux";
 export default function WebFooter() {
   const darkMode = useSelector((state) => state.AuthReducer.darkMode);
   return (
+   
+   <div className={`${
+    darkMode ? "bg-slate-700 text-white" : " bg-slate-100"
+  }`}>
     <div
-      className={`w-full py-6 h-[600px] md:h-[300px] lg:h-[330px] xl:h-[350px] ${
-        darkMode ? "bg-slate-700" : "bg-[#383434]"
-      } flex justify-center items-center`}
+      className={`w-[90%] ml-[5%]   flex flex-col md:flex-row justify-around items-center`}
     >
-      <div className="w-[80%] ml-[10%] md:ml-0  flex flex-col md:flex-row items-center justify-center ">
-        <div className="w-[90%] md:w-[40%] h-[300px]  flex items-center justify-center">
-          <img
-            src="/sookee-thumbs-up.png"
-            alt="/"
-            className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
-          />
-        </div>
-        <div className="w-[90%]  md:w-[40%] h-[300px] flex items-center justify-center">
-          <img
-            src="/Asset 12@2x-8.png"
-            alt="/"
-            className="h-[80%] md:h-[85%] lg:h-[95%] w-[80%]"
-          />
-        </div>
-      </div>
+
+    <div className="flex items-center justify-around p-3 md:w-[50%]">
+  <ul className="list-none w-50% flex flex-col gap-2">
+    <li className="text-base font-medium"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Can we help?</a></li>
+    <li className="mt-4 text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Help & support</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Contact Us</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">About SK ZIC</a></li>
+  </ul>
+
+  <ul className="list-none w-50% flex flex-col gap-2">
+    <li className="text-base font-medium"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Site info</a></li>
+    <li className="mt-4 text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Privacy policy</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Cookie policy</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Terms & conditions</a></li>
+  </ul>
+</div>
+  
+    <div className="flex items-center justify-around p-3  md:w-[50%]">
+  <ul className="list-none w-50% flex flex-col gap-2 mt-[-12px]">
+    <li className="text-base font-medium "><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">More from SK ZIC</a></li>
+    <li className="mt-4 text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Reward</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Promotion</a></li>
+    {/* <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/"> d</a></li> */}
+  </ul>
+
+  <ul className="list-none w-50% flex flex-col gap-2">
+    <li className="text-base font-medium"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Contact with Us</a></li>
+    <li className="mt-4 text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Facebook</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Instagram</a></li>
+    <li className="text-sm font-normal"><a className={`${darkMode ? "text-white":"text-black"} no-underline hover:underline`} href="/">Twitter</a></li>
+  </ul>
+</div>
+
+
+    </div>
     </div>
   );
 }

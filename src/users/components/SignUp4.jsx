@@ -142,7 +142,7 @@ function SignUp3(props) {
             <input
               value={formState.PhoneNumber}
               onChange={(e) => handleChange(e.target.value, "PhoneNumber")}
-              type="tel"
+              type="number"
               placeholder="Phone Number"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />

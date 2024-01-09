@@ -142,7 +142,7 @@ function SignUp1(props) {
             <select
             value={formState.type}
               onChange={(e) => handleChange(e.target.value, "type")}
-              className="w-full h-[40px] rounded-md px-3 outline-none border-none"
+              className="w-full h-[40px] rounded-md px-3 outline-none border border-black"
             >
               <option value="1" >Fronline</option>
               <option value="2" >RTO Owner</option>

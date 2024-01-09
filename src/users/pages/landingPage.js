@@ -581,8 +581,8 @@ export default function LandingPage(props) {
               >
                 <img
                   src="/Asset 12@2x-8.png"
-                  alt="/"
-                  className="h-[95%] w-[80%]"
+                  alt="/Asset"
+                  className="h-[240px]"
                 />
               </div>
             </div>
@@ -591,7 +591,7 @@ export default function LandingPage(props) {
               <div
                 className={`md:w-[40%] lg:w-[45%] md:h-[300px]   lg:h-[350px]  flex items-center justify-center`}
               >
-                <img src="/Asset 6.png" alt="/" className="h-[95%] w-[80%]" />
+                <img src="/Asset 6.png" alt="/" className="h-[240px]" />
               </div>
 
               <div className="md:w-[45%] flex flex-col gap-3 ">
@@ -674,8 +674,8 @@ export default function LandingPage(props) {
             Benefits of Adding to Home Screen
           </h1>
           <p
-            className={`w-full  md:w-[70%] xl:w-[60%]  md:text-center p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
-              darkMode ? "text-slate-400" : "text-[#636363]"
+            className={`w-full  md:w-[80%] xl:w-[70%]  md:text-center p-0 m-0 xl:leading-[33px] text-[18px] md:text-[20px] 2xl:text-[22px] font-normal ${
+              darkMode ? "text-slate-400" : "text-[#636363] text-center"
             }`}
           >
             No need to search for the app. It's right there on your home screen.

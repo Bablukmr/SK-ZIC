@@ -156,7 +156,7 @@ function SignUp3(props) {
     }  sm:relative min-h-[calc(100vh-60px)]  flex items-center flex-col justify-center`}>
       <div className="w-full flex">
         <div
-          className="cursor-pointer sm:z-10 ml-[10%] sm:ml-10 mt-3"
+          className="cursor-pointer sm:z-10 ml-[10%] sm:ml-[7.5%] mt-3"
           onClick={previousStep}
         >
           <svg
@@ -289,7 +289,7 @@ function SignUp3(props) {
             <input
               value={formState.phoneNumber}
               onChange={(e) => handleChange(e.target.value, "phoneNumber")}
-              type="tel"
+              type="number"
               placeholder="Phone Number"
               className=" text-sm h-1 border-none w-full bg-[#fafafa] outline-none py-4 px-2"
             />

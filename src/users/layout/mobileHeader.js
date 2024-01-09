@@ -42,7 +42,7 @@ export default function MobileHeader() {
         </div>
 
         <div className="w-1/2 bg-[greeen] flex items-center justify-center">
-          <img src="/logo.png" className="w-[80px] h-[20px]" />
+          <img src="/logo1.png" alt="/logo" className="w-[90px]  h-[90px]" />
         </div>
 
         <div className="flex items-center justify-center">
