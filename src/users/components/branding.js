@@ -23,6 +23,7 @@ export default function Branding(props) {
         slideShadows: true,
       }}
       pagination={{
+        clickable: true,
         dynamicBullets: true,
       }}
       loop={true}

@@ -18,7 +18,15 @@ export default function LandingPage(props) {
 
   const mobile = CheckMobileHook480();
   const [promotionData, setPromotionData] = useState([]);
-  const [brandingImages, setBrandingImages] = useState([]);
+  const [brandingImages, setBrandingImages] = useState([
+    { img: "/logo1.png" },
+    { img: "/logo1.png" },
+    { img: "/logo1.png" },
+    { img: "/logo1.png" },
+    { img: "/logo1.png" },
+    { img: "/logo1.png" },
+    
+  ]);
   const [landingData, setLandingData] = useState([]);
 
   const [showmodal, setShowModal] = useState(false);
@@ -42,14 +50,14 @@ export default function LandingPage(props) {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/ui/branding-public")
-      .then((d) => {
-        setBrandingImages(d.data);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+    // axios
+    //   .get("http://localhost:8000/ui/branding-public")
+    //   .then((d) => {
+    //     setBrandingImages(d.data);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e.response);
+    //   });
 
     axios
       .get("http://localhost:8000/ui/landing/")
